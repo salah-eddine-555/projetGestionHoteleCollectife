@@ -1,53 +1,20 @@
 <x-admin>
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Admin dashboard</h1>
+            <h1 class="mt-4">Hotels</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Admin dashboard</li>
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Hotels</li>
             </ol>
-            <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Hotels in site</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Chambres in site</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Total reservations</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Users in site</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Hotels
+                    Hotels dataTable
                 </div>
+                <div>
+                    <a href="/admin-category/create" class="btn btn-primary"></a>
+                </div>
+
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
@@ -83,7 +50,7 @@
                                             <a href="{{ route('site.show', $hotel) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
-{{--                                             <a href="{{ route('hotel.edit', $hotel) }}"
+                                            {{--                                             <a href="{{ route('hotel.edit', $hotel) }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
  --}}
                                             <form action="{{ route('hotel.destroy', $hotel) }}" method="POST">
@@ -103,4 +70,4 @@
         </div>
     </main>
 
-</x-admin>
+    <x-admin>

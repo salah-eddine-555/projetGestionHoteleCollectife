@@ -45,6 +45,7 @@
                 @endforeach
 
             </div>
+            {{$hotels->links}}
         </div>
     </section>
 
