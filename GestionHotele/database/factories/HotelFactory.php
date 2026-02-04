@@ -21,7 +21,7 @@ class HotelFactory extends Factory
             'address' => $this->faker->address(),
             'rating' => $this->faker->numberBetween(1, 5),
             'description' => $this->faker->paragraph(),
-            'image' => 'images/DefaultImage.jpg',
+            'image' => 'images/default.jpg',
             'created_at' => now(),
             'updated_at'=> now(),
         ];

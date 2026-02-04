@@ -54,8 +54,9 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Hotel $hotel)
+    public function show($id)
     {
+        $hotel = Hotel::findOrFail($id);
         return view('client.hotel-details', compact('hotel'));
     }
 
