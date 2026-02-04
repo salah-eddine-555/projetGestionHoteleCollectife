@@ -11,7 +11,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotels = Hotel::paginate(20);
+        $hotels = Hotel::all();
+       
         return view("admin.dashboard", compact('hotels'));
     }
 
@@ -53,7 +54,8 @@ class HotelController extends Controller
      */
     public function show(string $id)
     {
-        
+        $hotel = Hotel::findOrFail($id);
+        return view('client.hotel-details', compact('hotel'));
     }
 
     /**
