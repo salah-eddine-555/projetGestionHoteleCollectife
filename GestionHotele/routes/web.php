@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiteController;
 
-Route::get('/', function () {
-    return view('client.home');
-});
+Route::get('/', [SiteController::class, 'index']);
+
 
 Route::get('/login', function () {
     return view('authentication.login');
