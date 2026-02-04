@@ -12,7 +12,7 @@
                     Hotels dataTable
                 </div>
                 <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
+                    <a href="{{ route('hotels.create') }}" class="btn btn-primary mx-2 my-2">Create a hotel</a>
                 </div>
 
                 <div class="card-body">

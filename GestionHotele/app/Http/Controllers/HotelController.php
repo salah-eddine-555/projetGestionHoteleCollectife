@@ -22,7 +22,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('hotels.create');
+        return view('manager.create-hotel');
     }
 
     /**
@@ -30,24 +30,25 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'addresse' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
             'rating' => 'required|integer',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,jpg,png'
         ]);
 
-
+        
         if ($request->Hasfile('image')) {
-            $file = $request->file('name');
+            $file = $request->file('image');
             $name = time() . '_' . $file->getClientOriginalName();
             $path = $file->storeAS('images', $name, 'public');
             $validated['image'] = $path;
         }
 
-        Hotel::create();
-        return redirect()->route('/');
+        Hotel::create($validated);
+        return redirect()->route('hotels.index');
     }
 
     /**
@@ -63,7 +64,7 @@ class HotelController extends Controller
      */
     public function edit(Hotel $hotel)
     {
-        return view('hotels.edit', compact('hotel'));
+        return view('manager.edit-hotel', compact('hotel'));
     }
 
     /**

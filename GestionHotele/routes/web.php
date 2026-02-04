@@ -25,5 +25,5 @@ Route::get('/manager/hotels', function(){
 });
 
 
-
-Route::resource('hotels', HotelController::class);
+/* Route::post('/hotels/create', [HotelController::class, 'store']);
+ */Route::resource('hotels', HotelController::class);
