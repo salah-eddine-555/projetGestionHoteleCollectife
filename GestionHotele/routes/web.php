@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HotelController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,8 @@ Route::get('/admin/dashboard', function () {
 });
 
 Route::get('/hotel/{id}', [SiteController::class, 'show']);
+Route::get('/manager/hotels', [HotelController::class, 'index']);
 
-
+Route::delete('manager/hotels', [HotelController::class, 'destroy']);
 
 

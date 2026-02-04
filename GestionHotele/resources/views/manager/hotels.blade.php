@@ -47,10 +47,10 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $hotel) }}"
+                                            <a href="{{-- {{ route('site.show', $hotel) }} --}}"
                                                 class="btn btn-success mx-2">Details</a>
 
-                                            <a href="{{ route('hotel.edit', $hotel) }}"
+                                            <a href="{{-- {{ route('hotel.edit', $hotel) }} --}}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
                                             <form action="{{ route('hotel.destroy', $hotel) }}" method="POST">
@@ -70,4 +70,4 @@
         </div>
     </main>
 
-    <x-admin>
+</x-admin>
