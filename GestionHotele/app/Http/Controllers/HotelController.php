@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class HoteleController extends Controller
+use App\Models\Hotel;
+class HotelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $hotels = Hotele::all();
-        return view("hotels.index", compact('hotels'));
+        $hotels = Hotel::paginate(20);
+        return view("admin.dashboard", compact('hotels'));
     }
 
     /**
@@ -45,7 +45,7 @@ class HoteleController extends Controller
         }
 
         Hotele::create();
-        return redirect()->route('hotles.index');
+        return redirect()->route('/');
     }
 
     /**
@@ -59,16 +59,16 @@ class HoteleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Hotele $hotele)
+    public function edit(Hotel $hotel)
     {
-        return view('hotels.edit', compact('hotele'));
+        return view('hotels.edit', compact('hotel'));
         
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,Hotel $hotel)
     {
          $validated = $request->validate([
             'name'=> 'required|string|max:255',
@@ -86,14 +86,14 @@ class HoteleController extends Controller
             $validated['image'] = $path;
         }
 
-        hotele->update();
+        $hotel->update();
         return redirect()->route('hotles.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hotele $hotel)
+    public function destroy(Hotel $hotel)
     {
         $hotel->delete();
         return redirect()->route('hotles.index');
