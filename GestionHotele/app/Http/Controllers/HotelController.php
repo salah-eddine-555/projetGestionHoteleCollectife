@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+
 class HotelController extends Controller
 {
     /**
@@ -30,17 +31,17 @@ class HotelController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'=> 'required|string|max:255',
-            'addresse'=> 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'addresse' => 'required|string|max:255',
             'rating' => 'required|integer',
-            'description'=> 'required|string',
-            'image'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048'
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
         ]);
-    
 
-        if($request->Hasfile('image')){
+
+        if ($request->Hasfile('image')) {
             $file = $request->file('name');
-            $name =time().'_'.$file->getClientOriginalName();
+            $name = time() . '_' . $file->getClientOriginalName();
             $path = $file->storeAS('images', $name, 'public');
             $validated['image'] = $path;
         }
@@ -52,9 +53,9 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Hotel $hotel)
     {
-        
+        return view('client.hotel-details', compact('hotel'));
     }
 
     /**
@@ -63,26 +64,25 @@ class HotelController extends Controller
     public function edit(Hotel $hotel)
     {
         return view('hotels.edit', compact('hotel'));
-        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Hotel $hotel)
+    public function update(Request $request, Hotel $hotel)
     {
-         $validated = $request->validate([
-            'name'=> 'required|string|max:255',
-            'addresse'=> 'required|string|max:255',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'addresse' => 'required|string|max:255',
             'rating' => 'required|integer',
-            'description'=> 'required|string',
-            'image'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048'
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
         ]);
-    
 
-        if($request->Hasfile('image')){
+
+        if ($request->Hasfile('image')) {
             $file = $request->file('name');
-            $name =time().'_'.$file->getClientOriginalName();
+            $name = time() . '_' . $file->getClientOriginalName();
             $path = $file->storeAS('images', $name, 'public');
             $validated['image'] = $path;
         }
@@ -95,8 +95,8 @@ class HotelController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Hotel $hotel)
-    {
+    {   
         $hotel->delete();
-        return redirect()->route('hotles.index');
+        return redirect()->route('hotels.index');
     }
 }

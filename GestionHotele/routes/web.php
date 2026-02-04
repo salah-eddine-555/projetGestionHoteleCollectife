@@ -20,8 +20,10 @@ Route::get('/admin/dashboard', function () {
 });
 
 Route::get('/hotel/{id}', [SiteController::class, 'show']);
-Route::get('/manager/hotels', [HotelController::class, 'index']);
+Route::get('/manager/hotels', function(){
+    return redirect()->route('hotels.index');
+});
 
-Route::delete('manager/hotels', [HotelController::class, 'destroy']);
 
 
+Route::resource('hotels', HotelController::class);

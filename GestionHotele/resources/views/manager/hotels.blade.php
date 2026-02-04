@@ -47,16 +47,18 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{-- {{ route('site.show', $hotel) }} --}}"
+                                            <a href="{{ route('hotels.show', $hotel) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
-                                            <a href="{{-- {{ route('hotel.edit', $hotel) }} --}}"
+                                            <a href="{{ route('hotels.edit', $hotel) }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('hotel.destroy', $hotel) }}" method="POST">
+                                            <form action="{{ route('hotels.destroy', $hotel) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger mx-2" type="submit">Delete</button>
+                                                <button class="btn btn-danger mx-2"
+                                                 type="submit">Delete</button>
                                             </form>
                                         </div>
                                     </td>
