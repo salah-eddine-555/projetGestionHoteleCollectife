@@ -53,7 +53,8 @@ class HotelController extends Controller
      */
     public function show(string $id)
     {
-        
+        $hotel = Hotel::findOrFail($id);
+        return view('');
     }
 
     /**
