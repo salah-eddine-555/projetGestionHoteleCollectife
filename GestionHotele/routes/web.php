@@ -18,7 +18,8 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
 
+Route::get('/hotel/{id}', [SiteController::class, 'show']);
 
-Route::resource('site', SiteController::class);
+
 
 

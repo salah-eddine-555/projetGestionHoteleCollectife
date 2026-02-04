@@ -44,7 +44,7 @@ class HotelController extends Controller
             $validated['image'] = $path;
         }
 
-        Hotele::create();
+        Hotel::create();
         return redirect()->route('/');
     }
 
