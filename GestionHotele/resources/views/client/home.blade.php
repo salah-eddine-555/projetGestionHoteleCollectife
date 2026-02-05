@@ -19,7 +19,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Hotel image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                            <img class="card-img-top" src="{{ asset('storage/' . ($hotel->image ?? 'images/default.jpg')) }}"
                                 alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
@@ -37,7 +37,7 @@
                             </div>
                             <!-- Hotel actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="hotels/details/{{$hotel->id}}">View
                                         details</a></div>
                             </div>
                         </div>
