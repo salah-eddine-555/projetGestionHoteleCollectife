@@ -24,10 +24,13 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 // });
 
 Route::get('/hotel/{id}', [SiteController::class, 'show']);
+Route::get('/manager/hotels', function(){
+    return redirect()->route('hotels.index');
+});
 Route::delete('/logout',[SessionsController::class,'destroy']);
 Route::get('/login',[SessionsController::class,'create']);
 Route::post('/login',[SessionsController::class,'store']);
 
 
-
-
+/* Route::post('/hotels/create', [HotelController::class, 'store']);
+ */Route::resource('hotels', HotelController::class);
