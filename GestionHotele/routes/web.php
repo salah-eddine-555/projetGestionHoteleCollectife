@@ -17,6 +17,7 @@ Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 Route::get('/manager/dashboard', [SiteController::class, 'MangerDashboard']);
 Route::get('/manager/hotels', [SiteController::class, 'MangerHotles']);
 Route::get('/manager/chambres', [SiteController::class, 'MangerChambres']);
+Route::get('/manager/miscs', [SiteController::class, 'MangerMiscs']);
 
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
@@ -29,6 +30,4 @@ Route::delete('/logout',[SessionsController::class,'destroy']);
 Route::get('/login',[SessionsController::class,'create']);
 Route::post('/login',[SessionsController::class,'store']);
 
-
-/* Route::post('/hotels/create', [HotelController::class, 'store']);
- */Route::resource('hotels', HotelController::class);
+Route::resource('hotels', HotelController::class);

@@ -48,7 +48,7 @@ class HotelController extends Controller
         }
 
         Hotel::create($validated);
-        return redirect()->route('hotels.index');
+        return redirect()->back();;
     }
 
     /**
@@ -90,7 +90,7 @@ class HotelController extends Controller
         }
 
         $hotel->update();
-        return redirect()->route('hotles.index');
+        return redirect()->back();;
     }
 
     /**
@@ -99,6 +99,6 @@ class HotelController extends Controller
     public function destroy(Hotel $hotel)
     {   
         $hotel->delete();
-        return redirect()->route('hotels.index');
+        return redirect()->back();;
     }
 }
