@@ -8,11 +8,18 @@ use App\Http\Controllers\HotelController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
 
+<<<<<<< HEAD
 Route::get('/', [SiteController::class, 'ClientHomepage']);
+=======
+Route::get('/', [SiteController::class, 'clientHomePage']);
+>>>>>>> feauterSalah
 Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
 
 Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 
+//Route pour le validation des hotels a partire de admin
+Route::patch('/hotels/{hotel}/validate', [HotelController::class, 'validateHotel'])
+    ->name('hotels.validate');
 
 Route::get('/manager/dashboard', [SiteController::class, 'MangerDashboard']);
 Route::get('/manager/hotels', [SiteController::class, 'MangerHotles']);
