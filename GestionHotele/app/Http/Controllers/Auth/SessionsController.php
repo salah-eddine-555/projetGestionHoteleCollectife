@@ -50,7 +50,7 @@ class SessionsController extends Controller
             } elseif ($user->role_id == 2) {
                 return view('manager.dashboard');
             } elseif ($user->role_id == 3) {
-                return view('admin.dashboard');
+                return redirect('/admin/dashboard');
             }
         }
 

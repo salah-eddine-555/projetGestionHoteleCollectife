@@ -8,29 +8,26 @@ use App\Http\Controllers\HotelController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
 
-Route::get('/', [SiteController::class, 'index']);
+Route::get('/', [SiteController::class, 'ClientHomepage']);
 Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
-Route::get('/admin/dashboard', [HotelController::class, 'index']);
+
+Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 
 
+Route::get('/manager/dashboard', [SiteController::class, 'MangerDashboard']);
+Route::get('/manager/hotels', [SiteController::class, 'MangerHotles']);
+Route::get('/manager/chambres', [SiteController::class, 'MangerChambres']);
+Route::get('/manager/miscs', [SiteController::class, 'MangerMiscs']);
 
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
 
-// Route::get('/admin/dashboard', function () {
-//     return view('admin.dashboard');
-// });
 
 Route::get('/hotel/{id}', [SiteController::class, 'show']);
-Route::get('/manager/hotels', function(){
-    return redirect()->route('hotels.index');
-});
 Route::delete('/logout',[SessionsController::class,'destroy']);
 Route::get('/login',[SessionsController::class,'create']);
 Route::post('/login',[SessionsController::class,'store']);
 
-
-/* Route::post('/hotels/create', [HotelController::class, 'store']);
- */Route::resource('hotels', HotelController::class);
+Route::resource('hotels', HotelController::class);

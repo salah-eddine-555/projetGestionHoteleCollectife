@@ -18,7 +18,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand ps-3" href="index.html">Manager dashboard</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -42,11 +42,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <form method="post" action="/logout">
-                        @csrf
-                        @method('DELETE')
-                        <button class="dropdown-item" type="submit">Logout</button>
-                    </form>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -57,20 +53,20 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="/manager/dashboard">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Navigation</div>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" href="/manager/hotels">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Hotels table
                         </a>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" href="/manager/chambres">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Chambres table
                         </a>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" href="/manager/miscs">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Miscs table
                         </a>

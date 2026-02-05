@@ -10,12 +10,12 @@ class HotelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $hotels = Hotel::all();
+    // public function index()
+    // {
+    //     $hotels = Hotel::all();
 
-        return view("manager.hotels", compact('hotels'));
-    }
+    //     return view("admin.hotels", compact('hotels'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +48,7 @@ class HotelController extends Controller
         }
 
         Hotel::create($validated);
-        return redirect()->route('hotels.index');
+        return redirect()->back();;
     }
 
     /**
@@ -90,7 +90,7 @@ class HotelController extends Controller
         }
 
         $hotel->update();
-        return redirect()->route('hotles.index');
+        return redirect()->back();;
     }
 
     /**
@@ -99,6 +99,6 @@ class HotelController extends Controller
     public function destroy(Hotel $hotel)
     {   
         $hotel->delete();
-        return redirect()->route('hotels.index');
+        return redirect()->back();;
     }
 }
