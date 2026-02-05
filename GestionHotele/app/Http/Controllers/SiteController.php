@@ -32,7 +32,7 @@ class SiteController extends Controller
         return view('manager.chambres', compact('chambres'));
     }
 
-        public function MangerMiscs()
+    public function MangerMiscs()
     {
         $tags = Hotel::all();
         return view('manager.miscs', compact('tags'));
@@ -43,6 +43,12 @@ class SiteController extends Controller
     {
         $users = User::all();
         return view('admin.dashboard', compact('users'));
+    }
+
+    public function AdminHotels()
+    {
+        $hotels = Hotel::all();
+        return view('admin.hotels', compact('hotels'));
     }
 
     public function show()
