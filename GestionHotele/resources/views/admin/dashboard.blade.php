@@ -73,10 +73,10 @@
 
                                             <a href="/hotels/details/{{$user->id}}"
                                                 class="btn btn-success mx-2">details</a>
-                                            <form action="{{ route('hotels.validate', $hotel) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('hotels.validate', $user) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('PATCH')
-                                                    @if($hotel->is_active)
+                                                    @if($user->is_active)
                                                         <button type="submit" class="btn btn-success mx-2">
                                                             Validé
                                                         </button>
