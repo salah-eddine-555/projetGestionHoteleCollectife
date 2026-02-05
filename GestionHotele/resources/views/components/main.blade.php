@@ -30,7 +30,7 @@
 
             <div class="d-flex" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -43,11 +43,13 @@
                 </ul>
 
                 <div class="d-flex mx-2">
+                    @auth
                     <button class="btn btn-outline-dark" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
+                    @endauth
 
 
                     @auth
@@ -57,10 +59,12 @@
                             <button class="btn btn-outline-dark" type="submit">Logout</button>
                         </form>
                     @endauth
+                    @guest
                     <div class="mx-2">
-                        <button class="btn btn-dark">Register</button>
-                        <button class="btn btn-dark">Login</button>
+                        <a class="btn btn-dark" href="/register">Register</a>
+                        <a class="btn btn-dark" href="/login">Login</a>
                     </div>
+                    @endguest
                 </div>
             </div>
         </div>
