@@ -12,6 +12,8 @@ Route::get('/', [SiteController::class, 'ClientHomepage']);
 Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
 
 Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
+Route::get('/admin/hotels', [SiteController::class, 'AdminHotels']);
+
 
 //Route pour le validation des hotels a partire de admin
 Route::patch('/hotels/{hotel}/validate', [HotelController::class, 'validateHotel'])

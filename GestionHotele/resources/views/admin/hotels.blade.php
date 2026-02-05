@@ -11,10 +11,6 @@
                     <i class="fas fa-table me-1"></i>
                     Hotels dataTable
                 </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
-                </div>
-
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
@@ -47,13 +43,24 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $hotel) }}"
-                                                class="btn btn-success mx-2">Details</a>
+                                            <a href="/hotels/details/{{$hotel}}"
+                                                class="btn btn-success mx-2">details</a>
+                                            <form action="{{ route('hotels.validate', $hotel) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PATCH')
+                                                    @if($hotel->is_active)
+                                                        <button type="submit" class="btn btn-success mx-2">
+                                                            Validé
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-secondary mx-2">
+                                                            Valider
+                                                        </button>
+                                                     @endif
+                                            </form>
+                                           
 
-                                            {{--                                             <a href="{{ route('hotel.edit', $hotel) }}"
-                                                class="btn btn-secondary mx-2">dd</a>
- --}}
-                                            <form action="{{ route('hotel.destroy', $hotel) }}" method="POST">
+                                            <form action="" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
@@ -70,4 +77,4 @@
         </div>
     </main>
 
-    <x-admin>
+</x-admin>
