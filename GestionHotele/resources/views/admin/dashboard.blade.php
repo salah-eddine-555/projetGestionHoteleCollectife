@@ -73,11 +73,21 @@
 
                                             <a href="/hotels/details/{{$hotel->id}}"
                                                 class="btn btn-success mx-2">details</a>
-                                            @if($hotel->is_active)
-                                             <a href=""
-                                                class="btn btn-secondary mx-2">valider</a>
-                                            @else
-                                                <a href="" ></a>
+                                            <form action="{{ route('hotels.validate', $hotel) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PATCH')
+                                                    @if($hotel->is_active)
+                                                        <button type="submit" class="btn btn-success mx-2">
+                                                            Validé
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-secondary mx-2">
+                                                            Valider
+                                                        </button>
+                                                     @endif
+                                            </form>
+                                           
+
                                             <form action="" method="POST">
                                                 @csrf
                                                 @method('DELETE')
