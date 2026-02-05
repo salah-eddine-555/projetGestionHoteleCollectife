@@ -10,7 +10,8 @@ use PharIo\Manifest\AuthorCollection;
 
 Route::get('/', [SiteController::class, 'index']);
 Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
-Route::get('/admin/dashboard', [HotelController::class, 'index']);
+Route::get('/manager/hotels', [SiteController::class, 'MangerHotles']);
+Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 
 
 
