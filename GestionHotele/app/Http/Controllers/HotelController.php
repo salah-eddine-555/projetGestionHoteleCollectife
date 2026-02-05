@@ -99,6 +99,25 @@ class HotelController extends Controller
     public function destroy(Hotel $hotel)
     {   
         $hotel->delete();
-        return redirect()->back();;
+        return redirect('admin/dashboard');
+    }
+
+    public function validateHotel(Hotel $hotel){
+
+      
+        if($hotel->is_active == false){
+             $hotel->update([
+            "is_active" => true,
+            ]);
+        }else {
+            $hotel->update([
+            "is_active" => false,
+            ]);
+        }
+        
+
+       
+        return redirect()->back();
+       
     }
 }
