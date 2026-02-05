@@ -54,7 +54,7 @@
                                                         </button>
                                                     @else
                                                         <button type="submit" class="btn btn-secondary mx-2">
-                                                            Valider
+                                                            Unvalidate
                                                         </button>
                                                      @endif
                                             </form>
