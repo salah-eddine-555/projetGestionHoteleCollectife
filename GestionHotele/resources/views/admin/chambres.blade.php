@@ -11,16 +11,12 @@
                     <i class="fas fa-table me-1"></i>
                     Chambres dataTable
                 </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
-                </div>
-
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
                                 <th>Hotel name</th>
-                                <th>Hotel address</th>
+                                <th>Room number</th>
                                 <th>Capacity</th>
                                 <th>Category</th>
                                 <th>Options</th>
@@ -29,7 +25,7 @@
                         <tfoot>
                             <tr>
                                 <th>Hotel name</th>
-                                <th>Hotel address</th>
+                                <th>Room number</th>
                                 <th>Capacity</th>
                                 <th>Category</th>
                                 <th>Options</th>
@@ -40,7 +36,7 @@
                             @foreach ($chambres ?? [] as $chambre)
                                 <tr>
                                     <td>{{ $chambre->hotel }}</td>
-                                    <td>{{ $chambre->address }}</td>
+                                    <td>{{ $chambre->number }}</td>
                                     <td>{{ $chambre->capacity }}<div class="bi-star-fill"></div>
                                     </td>
                                     <td>{{ $chambre->category }}</td>
@@ -70,4 +66,4 @@
         </div>
     </main>
 
-    <x-admin>
+</x-admin>
