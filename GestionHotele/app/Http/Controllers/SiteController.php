@@ -7,11 +7,22 @@ use App\Models\Hotel;
 
 class SiteController extends Controller
 {
-    public function index()
+    public function clientHomePage()
     {
-        $hotels = Hotel::paginate(10);
+        $hotels = Hotel::where('is_active', false)->paginate(10);
         return view('client.home', compact('hotels'));
     }
+
+    public function MangerHotles(){
+        $hotels = Hotel::paginate(10);
+        return view('manager.hotels', compact('hotels'));
+    }
+
+    public function AdminDashboard(){
+        $hotels = Hotel::paginate(10);
+        return view('admin.dashboard', compact('hotels'));
+    }
+
     public function show()
     {
         $hotels = Hotel::paginate(10);

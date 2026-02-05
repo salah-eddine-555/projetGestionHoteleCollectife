@@ -10,12 +10,12 @@ class HotelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $hotels = Hotel::all();
+    // public function index()
+    // {
+    //     $hotels = Hotel::all();
 
-        return view("manager.hotels", compact('hotels'));
-    }
+    //     return view("admin.hotels", compact('hotels'));
+    // }
 
     /**
      * Show the form for creating a new resource.

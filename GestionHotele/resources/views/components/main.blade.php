@@ -41,6 +41,22 @@
                         </ul>
                     </li>
                 </ul>
+<<<<<<< HEAD
+                <button class="btn btn-outline-dark" type="button">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                </button>
+
+
+                @auth
+                    <form action="/logout" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button>Logout</button>
+                    </form>
+                @endauth
+=======
 
                 <div class="d-flex mx-2">
                     <button class="btn btn-outline-dark" type="button">
@@ -48,6 +64,7 @@
                         Cart
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
+>>>>>>> 2126a155486fbc3e39095d5caa64a185002e2855
 
 
                     @auth
