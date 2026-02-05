@@ -13,7 +13,8 @@ Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
 
 Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 Route::get('/admin/hotels', [SiteController::class, 'AdminHotels']);
-Route::get('/admin/chambres', [SiteController::class, 'AdminChambres']);
+Route::get('/admin/miscs', [SiteController::class, 'AdminMiscs']);
+
 
 
 //Route pour le validation des hotels a partire de admin

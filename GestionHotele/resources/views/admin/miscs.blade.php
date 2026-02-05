@@ -12,7 +12,7 @@
                     Tags dataTable
                 </div>
                 <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
+                    <a href="/admin-category/create" class="btn btn-primary">Create a tag</a>
                 </div>
 
                 <div class="card-body">
@@ -37,7 +37,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $tag) }}"
+                                            {{-- <a href="{{ route('site.show', $tag) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
                                             <a href="{{ route('tag.edit', $tag) }}"
@@ -47,7 +47,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -64,7 +64,7 @@
                     Properties dataTable
                 </div>
                 <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
+                    <a href="/admin-category/create" class="btn btn-primary">Create a property</a>
                 </div>
 
                 <div class="card-body">
@@ -89,7 +89,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $property) }}"
+                                            {{-- <a href="{{ route('site.show', $property) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
                                             <a href="{{ route('property.edit', $property) }}"
@@ -99,7 +99,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -116,7 +116,7 @@
                     Categories dataTable
                 </div>
                 <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
+                    <a href="/admin-category/create" class="btn btn-primary">Create a category</a>
                 </div>
 
                 <div class="card-body">
@@ -141,7 +141,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $category) }}"
+                                            {{-- <a href="{{ route('site.show', $category) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
                                             <a href="{{ route('category.edit', $category) }}"
@@ -151,7 +151,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -166,4 +166,4 @@
         </div>
     </main>
 
-    <x-admin>
+</x-admin>
