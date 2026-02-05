@@ -1,4 +1,4 @@
-<x-admin>
+<x-manager>
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Chambres</h1>
@@ -70,4 +70,4 @@
         </div>
     </main>
 
-    <x-admin>
+</x-manager>
