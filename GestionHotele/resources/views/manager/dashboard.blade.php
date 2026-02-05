@@ -1,4 +1,4 @@
-<x-admin>
+<x-manager>
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Dashboard</h1>
@@ -51,31 +51,33 @@
                             </tfoot>
                             <tbody>
 
-                                @foreach ($hotels ?? [] as $hotel)
-                                    <tr>
-                                        <td>{{ $hotel->name }}</td>
-                                        <td>{{ $hotel->address }}</td>
-                                        <td>{{ $hotel->rating }}<div class="bi-star-fill"></div>
-                                        </td>
-                                        <td>{{ $hotel->description }}</td>
-                                        <td>
-                                            <div class="d-flex ">
+@foreach ($hotels ?? [] as $hotel)
+                                <tr>
+                                    <td>{{ $hotel->name }}</td>
+                                    <td>{{ $hotel->address }}</td>
+                                    <td>{{ $hotel->rating }}<div class="bi-star-fill"></div>
+                                    </td>
+                                    <td>{{ $hotel->description }}</td>
+                                    <td>
+                                        <div class="d-flex ">
 
-                                                <a href="{{ route('site.show', $hotel) }}"
-                                                    class="btn btn-success mx-2">Details</a>
+                                            <a href="{{ route('hotels.show', $hotel) }}"
+                                                class="btn btn-success mx-2">Details</a>
 
-                                                <a href="{{ route('hotel.edit', $hotel) }}"
-                                                    class="btn btn-secondary mx-2">Edit</a>
+                                            <a href="{{ route('hotels.edit', $hotel) }}"
+                                                class="btn btn-secondary mx-2">Edit</a>
 
-                                                <form action="{{ route('hotel.destroy', $hotel) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            <form action="{{ route('hotels.destroy', $hotel) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger mx-2"
+                                                 type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
 
                             </tbody>
                         </table>
@@ -84,4 +86,4 @@
             </div>
     </main>
 
-</x-admin>
+</x-manager>

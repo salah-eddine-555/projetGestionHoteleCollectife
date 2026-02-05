@@ -1,4 +1,4 @@
-<x-main>
+<x-manager>
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -59,4 +59,4 @@
             </main>
         </div>
 
-</x-main>
+</x-manager>
