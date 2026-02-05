@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('chambres', function (Blueprint $table) {
-            $table->dropColumn('price_per_night');
+            $table->dropColumn('price');
             $table->dropColumn('description');
             $table->decimal('price_per_night', 8, 2);
             $table->text('description');
