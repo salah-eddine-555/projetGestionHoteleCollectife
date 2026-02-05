@@ -105,17 +105,17 @@ class HotelController extends Controller
     public function validateHotel(Hotel $hotel){
 
         
-        if($hotel->is_active == false){
+        if($hotel->is_active == 0){
              $hotel->update([
             "is_active" => true,
             ]);
         }
-        dd($hotel);
+        
         $hotel->update([
             "is_active" => false,
         ]);
        
        
-        return redirect('admin/dashboard');
+        return redirect()->back();
     }
 }
