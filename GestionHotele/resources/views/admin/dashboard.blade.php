@@ -52,7 +52,7 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>name</th>
                                 <th>Address</th>
                                 <th>Rating</th>
                                 <th>Description</th>
@@ -72,10 +72,12 @@
                                         <div class="d-flex ">
 
                                             <a href="/hotels/details/{{$hotel->id}}"
-                                                class="btn btn-success mx-2">Details</a>
+                                                class="btn btn-success mx-2">details</a>
+                                            @if($hotel->is_active)
                                              <a href=""
                                                 class="btn btn-secondary mx-2">valider</a>
-
+                                            @else
+                                                <a href="" ></a>
                                             <form action="" method="POST">
                                                 @csrf
                                                 @method('DELETE')

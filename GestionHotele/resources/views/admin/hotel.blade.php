@@ -51,7 +51,7 @@
                                                 class="btn btn-success mx-2">Details</a>
 
                                             {{--                                             <a href="{{ route('hotel.edit', $hotel) }}"
-                                                class="btn btn-secondary mx-2">Edit</a>
+                                                class="btn btn-secondary mx-2">dd</a>
  --}}
                                             <form action="{{ route('hotel.destroy', $hotel) }}" method="POST">
                                                 @csrf
