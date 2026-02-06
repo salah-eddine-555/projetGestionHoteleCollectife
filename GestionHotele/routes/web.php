@@ -5,12 +5,15 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\SessionsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
 
 Route::get('/', [SiteController::class, 'index']);
 Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
-Route::get('/admin/dashboard', [HotelController::class, 'index']);
+Route::get('/managgiter/hotels', [SiteController::class, 'MangerHotles']);
+Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 
 
 
@@ -34,3 +37,7 @@ Route::post('/login',[SessionsController::class,'store']);
 
 /* Route::post('/hotels/create', [HotelController::class, 'store']);
  */Route::resource('hotels', HotelController::class);
+
+ Route::resource('tags',TagController::class);
+
+ Route::resource('properties',PropertyController::class);
