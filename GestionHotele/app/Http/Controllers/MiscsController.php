@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class MiscsController extends Controller
@@ -47,5 +48,25 @@ class MiscsController extends Controller
         }
 
         return redirect('/admin/miscs');
+    }
+
+    public function destroy(Request $request, $type, $obj)
+    {
+        
+        switch($type){
+            case 'tag':
+                $tag = new Tag();
+                $tag = Tag::find($obj);
+                $this->tag->destroy($data);
+                break;
+            case 'property':
+                $this->proprty->destroy($data);
+                break;
+            case 'category':
+                $this->category->destroy($data);
+                break;
+        }
+        $tag->delete();
+        return redirect()->back();
     }
 }
