@@ -114,9 +114,6 @@ class HotelController extends Controller
             "is_active" => false,
             ]);
         }
-        
-
-       
         return redirect()->back();
        
     }

@@ -14,9 +14,8 @@ class ChambreSeeder extends Seeder
     public function run(): void
     {
         $chambre = Chambre::create([
-            'hotel_id' => 2,
+            'hotel_id' => 48,
             'categorie_id' => 3,
-            'hotel_id' => 1,
             'categorie_id' => 4,
             'number' => '99',
             'image' => 'images/DefaultImage.jpg',
