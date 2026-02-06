@@ -16,13 +16,15 @@ class ChambreSeeder extends Seeder
         $chambre = Chambre::create([
             'hotel_id' => 2,
             'categorie_id' => 3,
+            'hotel_id' => 1,
+            'categorie_id' => 4,
             'number' => '99',
             'image' => 'images/DefaultImage.jpg',
-            'price_per_night' => 180.00,
-            'capacite' => 3,
+            'price_per_night' => 150.00,
+            'capacite' => 4,
             'description' => 'chambre standard confortable',
         ]);
-        $chambre->tags()->attach([3,1]);
-        $chambre->proprties()->attach([1,4]);
+        $chambre->tags()->attach([2,1]);
+        $chambre->proprties()->attach([1,3]);
     }
 }

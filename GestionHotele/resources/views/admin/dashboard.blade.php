@@ -46,35 +46,47 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Hotels
+                    Users
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Rating</th>
-                                <th>Description</th>
+                                <th>FirstName</th>
+                                <th>LastName</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
         
-                            @foreach ($hotels ?? [] as $hotel)
+                            @foreach ($users ?? [] as $user)
                                 <tr>
-                                    <td>{{ $hotel->name }}</td>
-                                    <td>{{ $hotel->address }}</td>
-                                    <td>{{ $hotel->rating }}<div class="bi-star-fill"></div>
+                                    <td>{{ $user->firstname }}</td>
+                                    <td>{{ $user->lastname }}</td>
+                                    <td>{{ $user->email }}<div class="bi-star-fill"></div>
                                     </td>
-                                    <td>{{ $hotel->description }}</td>
+                                    <td>{{ $user->role->name }}</td>
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="/hotels/details/{{$hotel->id}}"
-                                                class="btn btn-success mx-2">Details</a>
-                                             <a href=""
-                                                class="btn btn-secondary mx-2">valider</a>
+                                            <a href="/hotels/details/{{$user->id}}"
+                                                class="btn btn-success mx-2">details</a>
+                                            <form action="{{ route('hotels.validate', $user) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PATCH')
+                                                    @if($user->is_active)
+                                                        <button type="submit" class="btn btn-success mx-2">
+                                                            Validé
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-secondary mx-2">
+                                                            Valider
+                                                        </button>
+                                                     @endif
+                                            </form>
+                                           
 
                                             <form action="" method="POST">
                                                 @csrf
