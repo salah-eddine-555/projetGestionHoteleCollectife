@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chambre;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
-class ChambreController extends Controller
+class PropertyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $chambres = Chambre::with('tags','proprties')->get();
-        return view('chambre.index',compact('chambres'));
+        return view('properties.index',['properties' => Property::all()]);
     }
 
     /**
@@ -29,16 +28,17 @@ class ChambreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(['name' => 'required|string|max:50']);
+        Property::create($validated);
+        return redirect()->route('proprtie.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Chambre $chambre)
+    public function show(string $id)
     {
-        $chambre = Chambre::with('tags','proprties');
-        return view('chambre.index',compact('chambres'));
+        //
     }
 
     /**
@@ -60,8 +60,9 @@ class ChambreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Property $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('proprtie.index');
     }
 }
