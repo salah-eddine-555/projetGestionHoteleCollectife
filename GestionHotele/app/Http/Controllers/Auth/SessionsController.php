@@ -7,6 +7,7 @@ use App\Models\User;
 // use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use function Termwind\render;
 
@@ -40,15 +41,22 @@ class SessionsController extends Controller
             'password' => ['required', 'min:8'],
         ]);
         // dd($validate);
-        if(Auth::attempt($validate)){
+        if (Auth::attempt($validate)) {
             // $request->session()->regenerate();
-            return redirect('/');
+            $user = DB::table('users')->where('email', $validate['email'])->first();
+            // dd($user);
+            if ($user->role_id == 1) {
+                return redirect('/');
+            } elseif ($user->role_id == 2) {
+                return view('manager.dashboard');
+            } elseif ($user->role_id == 3) {
+                return redirect('/admin/dashboard');
+            }
         }
 
         return back()->withErrors([
             'email' => 'email not much'
         ]);
-
     }
 
     /**
