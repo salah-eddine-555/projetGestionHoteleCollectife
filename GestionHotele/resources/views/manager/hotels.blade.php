@@ -26,15 +26,6 @@
                                 <th>Options</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Rating</th>
-                                <th>Description</th>
-                                <th>Options</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
 
                             @foreach ($hotels ?? [] as $hotel)

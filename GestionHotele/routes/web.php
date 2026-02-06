@@ -42,6 +42,6 @@ Route::post('/login',[SessionsController::class,'store']);
 
 
 /* Route::post('/hotels/create', [HotelController::class, 'store']);
- */Route::resource('hotels', HotelController::class);
+ */
 
 Route::resource('hotels', HotelController::class);
