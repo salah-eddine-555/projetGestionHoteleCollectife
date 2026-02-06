@@ -68,11 +68,11 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Chambres table
                         </a>
-                        <a class="nav-link" href="/manager/miscs">
+{{--                         <a class="nav-link" href="/manager/miscs">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Miscs table
                         </a>
-                    </div>
+ --}}                    </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
