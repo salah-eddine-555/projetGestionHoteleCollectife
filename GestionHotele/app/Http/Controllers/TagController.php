@@ -8,19 +8,20 @@ use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
-    public function index(){
-        return view('tags.index',['tag' => Tag::all()]);
-    }
 
-    public function store(Request $request){
-        $validated = $request->validate(['name' => 'required|string|max:50']);
-        $validated['slug'] = Str::slug($validated['name']);
+    public function store($validated)
+    {   
+        $validated = [
+            "name" => $validated['name'],
+            "slug" => strtolower($validated['name'])
+        ];
         Tag::create($validated);
-        return redirect()->route('tags.index');
+        return redirect('/admin/miscs');
     }
 
-    public function destroy(Tag $tag){
+    public function destroy(Tag $tag)
+    {
         $tag->delete();
-        return redirect()->route('tages.index');
+        return redirect('/admin/miscs');
     }
 }

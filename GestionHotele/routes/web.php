@@ -20,7 +20,6 @@ Route::get("/admin/create-miscs", [MiscsController::class, 'create']);
 Route::post("/admin/create-miscs", [MiscsController::class, 'store']);
 
 
-//Route pour le validation des hotels a partire de admin
 Route::patch('/hotels/{hotel}/validate', [HotelController::class, 'validateHotel'])
     ->name('hotels.validate');
 
@@ -37,5 +36,8 @@ Route::get('/hotel/{id}', [SiteController::class, 'show']);
 Route::delete('/logout',[SessionsController::class,'destroy']);
 Route::get('/login',[SessionsController::class,'create']);
 Route::post('/login',[SessionsController::class,'store']);
+
+
+
 
 Route::resource('hotels', HotelController::class);

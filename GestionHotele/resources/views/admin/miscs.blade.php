@@ -38,8 +38,6 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            {{-- <a href="{{ route('site.show', $tag) }}"
-                                                class="btn btn-success mx-2">Details</a>
 
                                             <a href="{{ route('tag.edit', $tag) }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
@@ -48,7 +46,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form> --}}
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
