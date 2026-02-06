@@ -6,13 +6,14 @@
                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                 <li class="breadcrumb-item active">Misc</li>
             </ol>
+            <div>
+                <a href="/admin/create-miscs" class="btn btn-primary my-2">Create a misc</a>
+            </div>
+
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Tags dataTable
-                </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary">Create a tag</a>
                 </div>
 
                 <div class="card-body">
@@ -63,10 +64,6 @@
                     <i class="fas fa-table me-1"></i>
                     Properties dataTable
                 </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary">Create a property</a>
-                </div>
-
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
@@ -114,9 +111,6 @@
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Categories dataTable
-                </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary">Create a category</a>
                 </div>
 
                 <div class="card-body">

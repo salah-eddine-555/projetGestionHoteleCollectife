@@ -69,6 +69,8 @@ class SiteController extends Controller
         return view('admin.miscs', compact('tags', 'properties', 'categories'));
     }
 
+    
+
     public function show()
     {
         $hotels = Hotel::paginate(10);
