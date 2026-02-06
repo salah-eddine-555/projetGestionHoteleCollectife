@@ -50,40 +50,36 @@
         </ul>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="/manager/dashboard">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Navigation</div>
-                        <a class="nav-link" href="/manager/hotels">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Hotels table
-                        </a>
-                        <a class="nav-link" href="/manager/chambres">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Chambres table
-                        </a>
-{{--                         <a class="nav-link" href="/manager/miscs">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Miscs table
-                        </a>
- --}}                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
-                </div>
-            </nav>
-        </div>
         <div id="layoutSidenav_content">
 
 
-            {{ $slot }}
+            <main>
+                <div class="container-fluid px-4">
+                    <div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+                        <div class="col-lg-6 col-md-8 col-sm-10 text-center">
+                            <div class="card shadow-lg border-0">
+                                <div class="card-body p-5">
+                                    <div class="mb-4">
+                                        <i class="fas fa-clock fa-4x text-warning"></i>
+                                    </div>
+                                    <h1 class="h3 mb-4 fw-bold text-dark">
+                                        Please Wait Until the Admin Activates Your Account
+                                    </h1>
+                                    <p class="text-muted mb-4">
+                                        Your account is currently pending approval. You will be notified once an
+                                        administrator
+                                        activates your account.
+                                    </p>
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
 
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

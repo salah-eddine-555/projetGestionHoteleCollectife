@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use App\Models\Chambre;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\Property;
 use App\Models\Proprtie;
 use App\Models\Tag;
 use App\Models\User;
@@ -69,7 +70,7 @@ class SiteController extends Controller
     public function AdminMiscs()
     {
         $tags = Tag::all();
-        $properties = Proprtie::all();
+        $properties = Property::all();
         $categories = Categorie::all();
         return view('admin.miscs', compact('tags', 'properties', 'categories'));
     }

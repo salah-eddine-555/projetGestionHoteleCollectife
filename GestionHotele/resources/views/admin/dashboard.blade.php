@@ -73,7 +73,7 @@
 
                                             <a href="/hotels/details/{{$user->id}}"
                                                 class="btn btn-success mx-2">details</a>
-                                            <form action="{{ route('hotels.validate', $user) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('users.validate', $user) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('PATCH')
                                                     @if($user->is_active)
@@ -82,7 +82,7 @@
                                                         </button>
                                                     @else
                                                         <button type="submit" class="btn btn-secondary mx-2">
-                                                            Valider
+                                                            non valider
                                                         </button>
                                                      @endif
                                             </form>

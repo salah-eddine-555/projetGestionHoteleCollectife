@@ -24,7 +24,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating">
-                                                    <select name="misc-type" class="form-control">
+                                                    <select name="type" class="form-control">
                                                         <option value=""></option>
                                                         <option value="tag">Tag</option>
                                                         <option value="property">Property</option>

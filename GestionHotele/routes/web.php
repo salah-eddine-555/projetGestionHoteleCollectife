@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\SessionsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MiscsController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
 
@@ -16,13 +18,13 @@ Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 
 Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 Route::get('/admin/hotels', [SiteController::class, 'AdminHotels']);
-Route::get('/admin/miscs', [SiteController::class, 'AdminMiscs']);
 
+Route::get('/admin/miscs', [SiteController::class, 'AdminMiscs']);
 Route::get("/admin/create-miscs", [MiscsController::class, 'create']);
 Route::post("/admin/create-miscs", [MiscsController::class, 'store']);
+Route::delete("/admin/{tag}/miscs", [MiscsController::class, 'destroy'])
+    ->name('miscs.destroy');
 
-
-//Route pour le validation des hotels a partire de admin
 Route::patch('/hotels/{hotel}/validate', [HotelController::class, 'validateHotel'])
     ->name('hotels.validate');
 
@@ -36,12 +38,22 @@ Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::get('/hotel/{id}', [SiteController::class, 'show']);
-Route::delete('/logout',[SessionsController::class,'destroy']);
-Route::get('/login',[SessionsController::class,'create']);
-Route::post('/login',[SessionsController::class,'store']);
+Route::delete('/logout', [SessionsController::class, 'destroy']);
+Route::get('/login', [SessionsController::class, 'create']);
+Route::post('/login', [SessionsController::class, 'store']);
 
 
-/* Route::post('/hotels/create', [HotelController::class, 'store']);
- */
 
 Route::resource('hotels', HotelController::class);
+
+Route::resource('tags', TagController::class);
+
+Route::resource('properties', PropertyController::class);
+Route::resource('hotels', HotelController::class);
+Route::get('manager.wait', function () {
+    return view('manager/wait');
+});
+
+
+Route::patch('/users/{user}/validate',[SessionsController::class,'validate'])
+->name('users.validate');
