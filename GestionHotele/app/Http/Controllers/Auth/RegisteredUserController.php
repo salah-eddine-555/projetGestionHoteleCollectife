@@ -43,14 +43,15 @@ class RegisteredUserController extends Controller
             'role_id' => (int)$request->roles
         ]);
 
-        Auth::login($user );
+        Auth::login($user);
         if ((int)$request->roles  == 1) {
+            User::create([
+                'is_active' => 1
+            ]);
             return redirect('/');
         } else if ((int)$request->roles  == 2) {
-            return view('manager.dashboard');
-        } else if((int)$request->roles  == 3){
-            return view('admin.dashboard');
-        }else{
+            return redirect('/login');
+        } else {
             return redirect()->route('/login');
         }
         //creat the use rin the database
