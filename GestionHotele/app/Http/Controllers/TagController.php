@@ -25,3 +25,4 @@ class TagController extends Controller
         return redirect('/admin/miscs');
     }
 }
+

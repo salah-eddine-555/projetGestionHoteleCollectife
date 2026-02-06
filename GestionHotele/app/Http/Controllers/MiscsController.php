@@ -9,10 +9,10 @@ class MiscsController extends Controller
 {
 
     private TagController $tag;
-    private ProprtieController $proprty;
+    private PropertyController $proprty;
     private CategorieController $category;
 
-    public function __construct(TagController $tag, ProprtieController $proprty, CategorieController $category)
+    public function __construct(TagController $tag, PropertyController $proprty, CategorieController $category)
     {
         $this->tag = $tag;
         $this->proprty = $proprty;

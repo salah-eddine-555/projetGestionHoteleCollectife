@@ -47,9 +47,11 @@ class RegisteredUserController extends Controller
         if ((int)$request->roles  == 1) {
             return redirect('/');
         } else if ((int)$request->roles  == 2) {
-            return redirect('/manager/home');
-        } else {
-            return redirect('/authentication/login');
+            return view('manager.dashboard');
+        } else if((int)$request->roles  == 3){
+            return view('admin.dashboard');
+        }else{
+            return redirect()->route('/login');
         }
         //creat the use rin the database
         //loh thim in

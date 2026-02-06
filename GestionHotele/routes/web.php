@@ -11,6 +11,8 @@ use PharIo\Manifest\AuthorCollection;
 
 Route::get('/', [SiteController::class, 'ClientHomepage']);
 Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
+Route::get('/managgiter/hotels', [SiteController::class, 'MangerHotles']);
+Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 
 Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 Route::get('/admin/hotels', [SiteController::class, 'AdminHotels']);
@@ -37,7 +39,6 @@ Route::get('/hotel/{id}', [SiteController::class, 'show']);
 Route::delete('/logout',[SessionsController::class,'destroy']);
 Route::get('/login',[SessionsController::class,'create']);
 Route::post('/login',[SessionsController::class,'store']);
-
 
 
 
