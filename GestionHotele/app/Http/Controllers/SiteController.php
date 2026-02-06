@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Chambre;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\Proprtie;
+use App\Models\Tag;
 use App\Models\User;
 
 class SiteController extends Controller
@@ -50,6 +54,22 @@ class SiteController extends Controller
         $hotels = Hotel::all();
         return view('admin.hotels', compact('hotels'));
     }
+
+    public function AdminChambres()
+    {
+        $chambres = Chambre::all();
+        return view('admin.chambres', compact('chambres'));
+    }
+
+    public function AdminMiscs()
+    {
+        $tags = Tag::all();
+        $properties = Proprtie::all();
+        $categories = Categorie::all();
+        return view('admin.miscs', compact('tags', 'properties', 'categories'));
+    }
+
+    
 
     public function show()
     {

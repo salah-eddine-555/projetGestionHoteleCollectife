@@ -11,16 +11,12 @@
                     <i class="fas fa-table me-1"></i>
                     Chambres dataTable
                 </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
-                </div>
-
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
                                 <th>Hotel name</th>
-                                <th>Hotel address</th>
+                                <th>Room number</th>
                                 <th>Capacity</th>
                                 <th>Category</th>
                                 <th>Options</th>
@@ -29,7 +25,7 @@
                         <tfoot>
                             <tr>
                                 <th>Hotel name</th>
-                                <th>Hotel address</th>
+                                <th>Room number</th>
                                 <th>Capacity</th>
                                 <th>Category</th>
                                 <th>Options</th>
@@ -39,26 +35,26 @@
 
                             @foreach ($chambres ?? [] as $chambre)
                                 <tr>
-                                    <td>{{ $chambre->hotel }}</td>
-                                    <td>{{ $chambre->address }}</td>
-                                    <td>{{ $chambre->capacity }}<div class="bi-star-fill"></div>
+                                    <td>{{ $chambre->hotel_id }}</td>
+                                    <td>{{ $chambre->number }}</td>
+                                    <td>{{ $chambre->capacite }}<div class="bi-star-fill"></div>
                                     </td>
-                                    <td>{{ $chambre->category }}</td>
+                                    <td>{{ $chambre->categorie_id }}</td>
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $chambre) }}"
+{{--                                             <a href="{{ route('site.show', $chambre) }}"
                                                 class="btn btn-success mx-2">Details</a>
-
+ --}}
                                             {{--                                             <a href="{{ route('chambre.edit', $chambre) }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
  --}}
-                                            <form action="{{ route('chambre.destroy', $chambre) }}" method="POST">
+{{--                                             <form action="{{ route('chambre.destroy', $chambre) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
                                             </form>
-                                        </div>
+ --}}                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -70,4 +66,4 @@
         </div>
     </main>
 
-    <x-admin>
+</x-admin>

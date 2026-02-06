@@ -6,13 +6,14 @@
                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                 <li class="breadcrumb-item active">Misc</li>
             </ol>
+            <div>
+                <a href="/admin/create-miscs" class="btn btn-primary my-2">Create a misc</a>
+            </div>
+
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Tags dataTable
-                </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
                 </div>
 
                 <div class="card-body">
@@ -37,7 +38,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $tag) }}"
+                                            {{-- <a href="{{ route('site.show', $tag) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
                                             <a href="{{ route('tag.edit', $tag) }}"
@@ -47,7 +48,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -63,10 +64,6 @@
                     <i class="fas fa-table me-1"></i>
                     Properties dataTable
                 </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
-                </div>
-
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
@@ -89,7 +86,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $property) }}"
+                                            {{-- <a href="{{ route('site.show', $property) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
                                             <a href="{{ route('property.edit', $property) }}"
@@ -99,7 +96,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -114,9 +111,6 @@
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Categories dataTable
-                </div>
-                <div>
-                    <a href="/admin-category/create" class="btn btn-primary"></a>
                 </div>
 
                 <div class="card-body">
@@ -141,7 +135,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="{{ route('site.show', $category) }}"
+                                            {{-- <a href="{{ route('site.show', $category) }}"
                                                 class="btn btn-success mx-2">Details</a>
 
                                             <a href="{{ route('category.edit', $category) }}"
@@ -151,7 +145,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -166,4 +160,4 @@
         </div>
     </main>
 
-    <x-admin>
+</x-admin>
