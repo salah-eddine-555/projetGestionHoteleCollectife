@@ -21,9 +21,8 @@ class TagController extends Controller
 
     public function destroy(Tag $tag)
     {   
-        dd($tag);
         $tag->delete();
-        return redirect('/admin/miscs');
+        return redirect()->back();
     }
 }
 

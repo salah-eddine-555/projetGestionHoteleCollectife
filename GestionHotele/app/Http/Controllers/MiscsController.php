@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Property;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -50,21 +52,24 @@ class MiscsController extends Controller
         return redirect('/admin/miscs');
     }
 
-    public function destroy(Request $request, $type, $obj)
+    public function destroy($misc)
     {
-        
-        switch($type){
+        [$type, $id] = explode('!', $misc);
+        switch ($type) {
             case 'tag':
-                $this->tag->destroy($obj);
+                $tag = Tag::find($id);
+                $this->tag->destroy($tag);
                 break;
             case 'property':
-                $this->proprty->destroy($obj);
+                $property = Property::find($id);
+                $this->proprty->destroy($property);
                 break;
             case 'category':
-                $this->category->destroy($obj);
+                $category = Categorie::find($id);
+                $this->category->destroy($category);
                 break;
         }
-        $tag->delete();
+
         return redirect()->back();
     }
 }

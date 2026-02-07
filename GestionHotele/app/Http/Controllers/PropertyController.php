@@ -12,7 +12,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('properties.index',['properties' => Property::all()]);
+        return view('properties.index', ['properties' => Property::all()]);
     }
 
     /**
@@ -59,9 +59,9 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $tag)
+    public function destroy(Property $property)
     {
-        $tag->delete();
-        return redirect()->route('proprtie.index');
+        $property->delete();
+        return redirect()->back();
     }
 }

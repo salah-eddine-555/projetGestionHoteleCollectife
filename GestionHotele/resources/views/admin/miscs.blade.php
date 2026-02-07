@@ -42,7 +42,7 @@
                                             <a href=""
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('miscs.destroy', 'tag' ,$tag->id) }}" method="POST">
+                                            <form action="{{ route('miscs.destroy', "tag!$tag->id") }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
@@ -88,7 +88,7 @@
                                             <a href=""
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('miscs.destroy', $property) }}" method="POST">
+                                            <form action="{{ route('miscs.destroy', "property!$property->id") }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
@@ -134,7 +134,7 @@
                                             <a href=""
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('miscs.destroy', $category) }}" method="POST">
+                                            <form action="{{ route('miscs.destroy', "category!$category->id") }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
