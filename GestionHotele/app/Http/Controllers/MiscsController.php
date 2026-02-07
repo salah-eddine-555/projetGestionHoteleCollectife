@@ -52,6 +52,54 @@ class MiscsController extends Controller
         return redirect('/admin/miscs');
     }
 
+    public function edit($obj)
+    {
+
+        [$type, $id] = explode('!', $obj);
+        $misc = null;
+        switch ($type) {
+            case 'tag':
+                $misc = Tag::find($id);
+                break;
+            case 'property':
+                $misc = Property::find($id);
+                break;
+            case 'category':
+                $misc = Categorie::find($id);
+                break;
+        }
+
+        return view('admin.edit-miscs', compact('misc', 'type'));
+    }
+
+
+    public function update(Request $request, $misc)
+    {
+        [$type, $id] = explode('!', $misc);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:50'
+        ]);
+        switch ($type) {
+            case 'tag':
+                $tag = Tag::find($id);
+                $this->tag->update($validated, $tag);
+                break;
+            case 'property':
+                $property = Property::find($id);
+                $this->proprty->update($validated, $property);
+                break;
+            case 'category':
+                $category = Categorie::find($id);
+                $this->category->update($validated, $category);
+                break;
+        }
+
+        return redirect('/admin/miscs');
+    }
+
+
+
     public function destroy($misc)
     {
         [$type, $id] = explode('!', $misc);

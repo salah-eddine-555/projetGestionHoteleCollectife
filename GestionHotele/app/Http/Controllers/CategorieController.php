@@ -13,6 +13,14 @@ class CategorieController extends Controller
         return redirect('/admin/miscs');
     }
 
+    public function update($validated, Categorie $category)
+    {
+
+        $category->update($validated);
+        return redirect()->back();
+    }
+
+
     public function destroy(Categorie $category)
     {
         $category->delete();

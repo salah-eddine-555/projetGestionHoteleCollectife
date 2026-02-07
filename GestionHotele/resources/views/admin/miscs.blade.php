@@ -38,8 +38,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-
-                                            <a href=""
+                                            <a href="{{ route('miscs.edit', "tag!$tag->id") }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
                                             <form action="{{ route('miscs.destroy', "tag!$tag->id") }}" method="POST">
@@ -85,7 +84,7 @@
                                         <div class="d-flex ">
 
 
-                                            <a href=""
+                                            <a href="{{ route('miscs.edit', "property!$property->id") }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
                                             <form action="{{ route('miscs.destroy', "property!$property->id") }}" method="POST">
@@ -131,7 +130,7 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href=""
+                                            <a href="{{ route('miscs.edit', "category!$category->id") }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
                                             <form action="{{ route('miscs.destroy', "category!$category->id") }}" method="POST">

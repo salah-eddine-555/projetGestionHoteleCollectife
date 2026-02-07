@@ -25,6 +25,12 @@ Route::post("/admin/create-miscs", [MiscsController::class, 'store']);
 Route::delete("/admin/miscs/{misc}", [MiscsController::class, 'destroy'])
     ->name('miscs.destroy');
 
+Route::get("/admin/edit-miscs/{misc}", [MiscsController::class, 'edit'])
+    ->name('miscs.edit');
+Route::put("/admin/miscs/edit-miscs/{misc}", [MiscsController::class, 'update'])
+    ->name('miscs.update');
+
+
 Route::patch('/hotels/{hotel}/validate', [HotelController::class, 'validateHotel'])
     ->name('hotels.validate');
 
@@ -55,5 +61,5 @@ Route::get('manager.wait', function () {
 });
 
 
-Route::patch('/users/{user}/validate',[SessionsController::class,'validate'])
-->name('users.validate');
+Route::patch('/users/{user}/validate', [SessionsController::class, 'validate'])
+    ->name('users.validate');

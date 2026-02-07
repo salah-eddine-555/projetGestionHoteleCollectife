@@ -10,22 +10,22 @@
                                     <h3 class="text-center font-weight-light my-4">Create a hotel</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form action="" method="POST">
+                                    <form action="{{ route('miscs.update', "$type!$misc->id") }}" method="POST">
 
                                         @csrf
                                         @method('PUT')
                                         <div class="row mb-3">
-                                            <div class="col-md-6">
+                                            <div class="">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" name="name" id="hotel-name"
-                                                        type="text" placeholder="Enter the hotel name" value="{{$misc->name}}" />
+                                                    <input class="form-control" name="name" id="misc-name"
+                                                        type="text" placeholder="Enter the misc name" value="{{$misc->name}}" />
                                                     <label for="name">Name</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><button type="submit" name="hotel-create"
-                                                    class="btn btn-primary btn-block">Create</button></div>
+                                            <div class="d-grid"><button type="submit" name="misc-edit"
+                                                    class="btn btn-primary btn-block">edit</button></div>
                                         </div>
                                     </form>
                                 </div>
