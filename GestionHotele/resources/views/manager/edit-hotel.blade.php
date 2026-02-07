@@ -48,8 +48,10 @@
                                         </div>
 
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><button type="submit" name="hotel-edit"
-                                                    class="btn btn-primary btn-block">Edit</button></div>
+                                            <div class="d-grid">
+                                                <button type="submit" name="hotel-edit"
+                                                 class="btn btn-primary btn-block">Edit</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

@@ -20,6 +20,7 @@ class HotelController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
         return view('manager.create-hotel');
@@ -71,27 +72,28 @@ class HotelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Hotel $hotel)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'addresse' => 'required|string|max:255',
-            'rating' => 'required|integer',
-            'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
-        ]);
+        public function update(Request $request, Hotel $hotel)
+        {
+            
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'rating' => 'required|integer',
+                'description' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
+            ]);
 
+            
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $name = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAS('images', $name, 'public');
+                $validated['image'] = $path;
+            }
 
-        if ($request->Hasfile('image')) {
-            $file = $request->file('name');
-            $name = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAS('images', $name, 'public');
-            $validated['image'] = $path;
+            $hotel->update($validated);
+            return redirect()->back();
         }
-
-        $hotel->update();
-        return redirect()->back();;
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -99,7 +101,7 @@ class HotelController extends Controller
     public function destroy(Hotel $hotel)
     {   
         $hotel->delete();
-        return redirect('admin/dashboard');
+        return redirect()->back();
     }
 
     public function validateHotel(Hotel $hotel){
@@ -114,9 +116,6 @@ class HotelController extends Controller
             "is_active" => false,
             ]);
         }
-        
-
-       
         return redirect()->back();
        
     }

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Psy\CodeCleaner\FunctionContextPass;
 
 use function Termwind\render;
 
@@ -48,7 +49,12 @@ class SessionsController extends Controller
             if ($user->role_id == 1) {
                 return redirect('/');
             } elseif ($user->role_id == 2) {
-                return view('manager.dashboard');
+                // dd($user->is_active ); 
+                if ($user->is_active == 1) {
+                    return redirect('manager/dashboard');
+                } else {
+                    return redirect('manager.wait');
+                }
             } elseif ($user->role_id == 3) {
                 return redirect('/admin/dashboard');
             }
@@ -93,5 +99,31 @@ class SessionsController extends Controller
         Auth::logout();
 
         return view('authentication/register');
+    }
+
+    public function validate(User $user)
+    {
+        // dd($user);
+        if ($user->is_active == 0) {
+            $user->is_active = 1;
+            $user->save();
+            // $user->update([
+            //     "is_active" => 1
+            // ]);
+            // dd($user);
+
+
+        } else {
+            $user->is_active = 0;
+            $user->save();
+            // dd($user);
+            // $user->update([
+            //     "is_active" => 0
+            // ]);
+        }
+
+
+
+        return redirect()->back();
     }
 }
