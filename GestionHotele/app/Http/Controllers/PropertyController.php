@@ -26,9 +26,8 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store($validated)
     {
-        $validated = $request->validate(['name' => 'required|string|max:50']);
         Property::create($validated);
         return redirect()->route('proprtie.index');
     }

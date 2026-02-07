@@ -55,15 +55,13 @@ class MiscsController extends Controller
         
         switch($type){
             case 'tag':
-                $tag = new Tag();
-                $tag = Tag::find($obj);
-                $this->tag->destroy($data);
+                $this->tag->destroy($obj);
                 break;
             case 'property':
-                $this->proprty->destroy($data);
+                $this->proprty->destroy($obj);
                 break;
             case 'category':
-                $this->category->destroy($data);
+                $this->category->destroy($obj);
                 break;
         }
         $tag->delete();

@@ -42,7 +42,7 @@
                                             <a href=""
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('miscs.destroy', 'tag' ,$tag) }}" method="POST">
+                                            <form action="{{ route('miscs.destroy', 'tag' ,$tag->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
