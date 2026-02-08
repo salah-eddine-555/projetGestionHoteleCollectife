@@ -60,7 +60,7 @@ class HotelController extends Controller
      */
         public function show($id)
         {
-    
+         
             $hotel = Hotel::findOrFail($id);
             return view('client.hotel-details', compact('hotel'));
         }

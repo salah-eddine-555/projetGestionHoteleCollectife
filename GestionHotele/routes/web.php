@@ -11,35 +11,51 @@ use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
 
-Route::get('/', [SiteController::class, 'ClientHomepage']);
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\GerantMiddleware;
 
-Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
-
-Route::get('/managgiter/hotels', [SiteController::class, 'MangerHotles']);
-Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
-
-Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
-Route::get('/admin/hotels', [SiteController::class, 'AdminHotels']);
-
-Route::get('/admin/miscs', [SiteController::class, 'AdminMiscs']);
-Route::get("/admin/create-miscs", [MiscsController::class, 'create']);
-Route::post("/admin/create-miscs", [MiscsController::class, 'store']);
-Route::delete("/admin/miscs/{misc}", [MiscsController::class, 'destroy'])
-    ->name('miscs.destroy');
-
-Route::get("/admin/edit-miscs/{misc}", [MiscsController::class, 'edit'])
-    ->name('miscs.edit');
-Route::put("/admin/miscs/edit-miscs/{misc}", [MiscsController::class, 'update'])
-    ->name('miscs.update');
+//protection des routes par le middleware AuthMiddlweare 
 
 
-Route::patch('/hotels/{hotel}/validate', [HotelController::class, 'validateHotel'])
+Route::middleware('admin')->group(function() {
+    Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
+    Route::get('/admin/hotels', [SiteController::class, 'AdminHotels']);
+    Route::get('/admin/miscs', [SiteController::class, 'AdminMiscs']);
+    Route::get("/admin/create-miscs", [MiscsController::class, 'create']);
+
+    Route::post("/admin/create-miscs", [MiscsController::class, 'store']);
+    Route::delete("/admin/miscs/{misc}", [MiscsController::class, 'destroy'])
+        ->name('miscs.destroy');
+
+    Route::get("/admin/edit-miscs/{misc}", [MiscsController::class, 'edit'])
+        ->name('miscs.edit');
+    Route::put("/admin/miscs/edit-miscs/{misc}", [MiscsController::class, 'update'])
+    ->name('miscs.update');    
+
+    Route::patch('/hotels/{hotel}/validate', [HotelController::class, 'validateHotel'])
     ->name('hotels.validate');
+    Route::patch('/users/{user}/validate', [SessionsController::class, 'validate'])
+    ->name('users.validate');
 
-Route::get('/manager/dashboard', [SiteController::class, 'MangerDashboard']);
-Route::get('/manager/hotels', [SiteController::class, 'MangerHotles']);
-Route::get('/manager/chambres', [SiteController::class, 'MangerChambres']);
-Route::get('/manager/miscs', [SiteController::class, 'MangerMiscs']);
+    Route::resource('hotels', HotelController::class);
+    Route::resource('tags', TagController::class);
+    Route::resource('properties', PropertyController::class);
+    Route::resource('hotels', HotelController::class);
+
+
+});
+
+Route::middleware('gerant')->group(function() {
+
+    Route::get('/manager/dashboard', [SiteController::class, 'MangerDashboard']);
+    Route::resource('hotels', HotelController::class);
+    Route::get('/manager/hotels', [SiteController::class, 'MangerHotles']);
+    Route::get('/manager/chambres', [SiteController::class, 'MangerChambres']);
+    Route::get('/manager/miscs', [SiteController::class, 'MangerMiscs']);
+});
+
+Route::get('/', [SiteController::class, 'ClientHomepage']);
+Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
 
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
@@ -52,16 +68,9 @@ Route::post('/login', [SessionsController::class, 'store']);
 
 
 
-Route::resource('hotels', HotelController::class);
-
-Route::resource('tags', TagController::class);
-
-Route::resource('properties', PropertyController::class);
-Route::resource('hotels', HotelController::class);
 Route::get('manager.wait', function () {
     return view('manager/wait');
 });
 
 
-Route::patch('/users/{user}/validate', [SessionsController::class, 'validate'])
-    ->name('users.validate');
+
