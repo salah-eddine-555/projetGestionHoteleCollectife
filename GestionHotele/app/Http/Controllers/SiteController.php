@@ -20,18 +20,21 @@ class SiteController extends Controller
 
     public function MangerDashboard()
     {   
-        $user = auth()->user();
-
-        $hotels = Hotel::whereHas('gerant', function($query) use($user) {
-            $query->where('user_id', $user->id);
-        })->get();
-        
+       
+        $hotels = Hotel::all();
         return view('manager.dashboard', compact('hotels'));
     }
 
     public function MangerHotles()
     {
-        $hotels = Hotel::all();
+
+         $user = auth()->user();
+        
+        
+        $hotels = Hotel::whereHas('gerant', function($query) use($user) {
+            $query->where('user_id', $user->id);
+        })->get();
+      
         return view('manager.hotels', compact('hotels'));
     }
 

@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
 
 Route::get('/', [SiteController::class, 'ClientHomepage']);
+
 Route::get('/hotels/details/{id}', [HotelController::class, 'show']);
+
 Route::get('/managgiter/hotels', [SiteController::class, 'MangerHotles']);
 Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
 

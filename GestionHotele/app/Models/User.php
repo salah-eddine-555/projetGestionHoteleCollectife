@@ -52,15 +52,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function Role(): BelongsTo
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
     // //relation many to many avec hotel
 
-    // public function Hotel(): belgonsToMany { 
-    //     return $this->belongsToMany(Hotel::class);
-    // }
+    public function Hotel(): belgonsToMany { 
+        return $this->belongsToMany(Hotel::class);
+    }
 
 }

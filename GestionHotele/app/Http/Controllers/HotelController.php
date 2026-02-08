@@ -47,19 +47,23 @@ class HotelController extends Controller
             $path = $file->storeAS('images', $name, 'public');
             $validated['image'] = $path;
         }
-
-        Hotel::create($validated);
-        return redirect()->back();;
+        $user = auth()->user();
+    
+        $hotel = Hotel::create($validated);
+       
+        $hotel->gerant()->attach($user->id);
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
-    {
-        $hotel = Hotel::findOrFail($id);
-        return view('client.hotel-details', compact('hotel'));
-    }
+        public function show($id)
+        {
+    
+            $hotel = Hotel::findOrFail($id);
+            return view('client.hotel-details', compact('hotel'));
+        }
 
     /**
      * Show the form for editing the specified resource.

@@ -47,7 +47,8 @@
                                         </div>
 
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><button type="submit" name="hotel-create"
+                                            <div class="d-grid">
+                                                <button type="submit" name="hotel-create"
                                                     class="btn btn-primary btn-block">Create</button></div>
                                         </div>
                                     </form>

@@ -15,9 +15,10 @@ class Hotel extends Model
     protected $fillable = ['name','address', 'rating','description', 'image', 'is_active'];
 
     public function gerant() {
-        return $this->belongsToMany(User::class, 'gerant_hotel')->whereHas('roles', function($query){
+        return $this->belongsToMany(User::class, 'gerant_hotel')->whereHas('role', function($query){
             $query->where('name', 'gerant');
         });
     }
+
 
 }
