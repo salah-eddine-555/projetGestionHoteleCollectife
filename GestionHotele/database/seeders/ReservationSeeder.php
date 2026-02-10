@@ -13,11 +13,6 @@ class ReservationSeeder extends Seeder
      */
     public function run(): void
     {
-        Reservation::create([
-            'start_date'=> '2026-01-10',
-            'end_date' => '2026-01-15',
-            'user_id' => 2,
-            'chambre_id'=> 5
-        ]);
+        Reservation::factory()->count(50)->create();
     }
 }
