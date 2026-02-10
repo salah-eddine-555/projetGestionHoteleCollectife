@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\SessionsController;
+use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MiscsController;
@@ -54,6 +55,6 @@ Route::get('manager.wait', function () {
     return view('manager/wait');
 });
 
-
+Route::resource('chambres',ChambreController::class);
 Route::patch('/users/{user}/validate',[SessionsController::class,'validate'])
 ->name('users.validate');
