@@ -36,8 +36,8 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Find</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Hotels</a></li>
-                            <li><a class="dropdown-item" href="chambres/index">All Rooms</a></li>
+                            <li><a class="dropdown-item" href="/">All Hotels</a></li>
+                            <li><a class="dropdown-item" href="{{ route('chambres.index') }}">All Rooms</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -55,7 +55,7 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">Find</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Hotels</a></li>
+                                <li><a class="dropdown-item" href="/">All Hotels</a></li>
                                 <li><a class="dropdown-item" href="#!">All Rooms</a></li>
                             </ul>
                         </li>
@@ -105,7 +105,7 @@
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+                <p class="m-0 text-center text-white">Copyright &copy; StayEase 2027</p>
             </div>
         </footer>
         <!-- Bootstrap core JS-->

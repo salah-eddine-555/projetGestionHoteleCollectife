@@ -14,7 +14,7 @@ class SiteController extends Controller
 {
     public function ClientHomepage()
     {
-        $hotels = Hotel::where('is_active', true)->paginate(10);
+        $hotels = Hotel::where('is_active', true)->paginate(20);
         return view('client.home', compact('hotels'));
     }
 
