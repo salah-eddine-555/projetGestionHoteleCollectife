@@ -8,6 +8,6 @@ class Property extends Model
 {
     protected $fillable = ['name'];
     public function chambres(){
-        return $this->belongsToMany(Chambre::class, 'chambre_proprite');
+        return $this->belongsToMany(Chambre::class, 'chambre_property');
     }
 }
