@@ -10,6 +10,7 @@ use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ReservationController;
 
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
@@ -44,6 +45,7 @@ Route::middleware('admin')->group(function() {
     Route::resource('tags', TagController::class);
     Route::resource('properties', PropertyController::class);
     Route::resource('hotels', HotelController::class);
+    Route::resource('role',RoleController::class);
 
 
 });
