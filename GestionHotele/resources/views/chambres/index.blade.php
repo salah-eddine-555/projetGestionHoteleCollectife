@@ -21,5 +21,6 @@
         </select>
         <button type='submit'>Filtrer</button>
     </form>
+    
 </body>
 </html>
