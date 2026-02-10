@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Hotel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -59,7 +60,7 @@ class User extends Authenticatable
 
     // //relation many to many avec hotel
 
-    public function Hotel(): belgonsToMany { 
+    public function Hotel(): BelongsToMany { 
         return $this->belongsToMany(Hotel::class);
     }
 

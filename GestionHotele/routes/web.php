@@ -67,9 +67,18 @@ Route::get('/login', [SessionsController::class, 'create']);
 Route::post('/login', [SessionsController::class, 'store']);
 
 
+//routes for editing user profile 
+Route::get('/profile', [SessionsController::class,'edit']);
+Route::put('/profile', [SessionsController::class,'update']);
+
+
 
 Route::get('manager.wait', function () {
     return view('manager/wait');
+});
+
+Route::get('client.banne', function () {
+    return view('client/banne');
 });
 
 
