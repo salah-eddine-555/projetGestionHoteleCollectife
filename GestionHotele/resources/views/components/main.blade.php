@@ -37,7 +37,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">Find</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">All Hotels</a></li>
-                            <li><a class="dropdown-item" href="#!">All Rooms</a></li>
+                            <li><a class="dropdown-item" href="chambres/index">All Rooms</a></li>
                         </ul>
                     </li>
                 </ul>

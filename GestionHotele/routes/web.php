@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\SessionsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MiscsController;
+use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\ReservationController;
+
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +74,11 @@ Route::post('/login', [SessionsController::class, 'store']);
 Route::get('manager.wait', function () {
     return view('manager/wait');
 });
+
+Route::get('chambres/index', [ChambreController::class, 'index']);
+
+//test pour le reservation 
+Route::post('reservation/filter', [ReservationController::class, 'filter'])->name('reservation.filter');
 
 
 
