@@ -34,23 +34,21 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'min:8'],
             'roles' => ['required']
         ]);
-        // dd($request);
         $user = User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => (int)$request->roles
+            'role_id' => (int)$request->roles,
+            'is_active' => 0
         ]);
-
+        // dd($user);
         Auth::login($user);
-        if ((int)$request->roles  == 1) {
-            User::create([
-                'is_active' => 1
-            ]);
+        if ($user->role_id  == 1) {
+            $user->update(['is_active' => 1]);
             return redirect('/');
         } else if ((int)$request->roles  == 2) {
-            return redirect('/login');
+            return redirect('/manager.wait');
         } else {
             return redirect()->route('/login');
         }

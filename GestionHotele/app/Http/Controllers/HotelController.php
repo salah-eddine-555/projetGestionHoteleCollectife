@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chambre;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 
@@ -60,9 +61,9 @@ class HotelController extends Controller
      */
         public function show($id)
         {
-         
+            $chambres = Chambre::where('hotel_id',$id)->get();
             $hotel = Hotel::findOrFail($id);
-            return view('client.hotel-details', compact('hotel'));
+            return view('client.hotel-details', compact('hotel', 'chambres'));
         }
 
     /**

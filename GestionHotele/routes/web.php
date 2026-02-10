@@ -3,10 +3,10 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\SessionsController;
+use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MiscsController;
-use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ReservationController;
 
 use App\Http\Controllers\PropertyController;
@@ -70,11 +70,19 @@ Route::get('/login', [SessionsController::class, 'create']);
 Route::post('/login', [SessionsController::class, 'store']);
 
 
+//routes for editing user profile 
+Route::get('/profile', [SessionsController::class,'edit']);
+Route::put('/profile', [SessionsController::class,'update']);
+
+
 
 Route::get('manager.wait', function () {
     return view('manager/wait');
 });
 
+Route::get('client.banne', function () {
+    return view('client/banne');
+});
 Route::get('chambres/index', [ChambreController::class, 'index']);
 
 //test pour le reservation 
@@ -86,3 +94,8 @@ Route::post('reservation/filter', [ReservationController::class, 'filter'])->nam
 Route::post('/checkout', [StripeController::class, 'checkout'])->name('checkout');
 Route::get('/success', [StripeController::class, 'success'])->name('checkout.success');
 Route::get('/cancel', [StripeController::class, 'cancel'])->name('checkout.cancel');
+
+
+Route::resource('chambres',ChambreController::class);
+Route::patch('/users/{user}/validate',[SessionsController::class,'validate'])
+->name('users.validate');

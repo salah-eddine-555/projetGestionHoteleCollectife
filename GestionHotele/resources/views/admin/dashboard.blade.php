@@ -46,7 +46,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Users
+                    Gerants
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -60,23 +60,25 @@
                             </tr>
                         </thead>
                         <tbody>
-        
-                            @foreach ($users ?? [] as $user)
-                                <tr>
-                                    <td>{{ $user->firstname }}</td>
-                                    <td>{{ $user->lastname }}</td>
-                                    <td>{{ $user->email }}<div class="bi-star-fill"></div>
-                                    </td>
-                                    <td>{{ $user->role->name }}</td>
-                                    <td>
-                                        <div class="d-flex ">
 
-                                            <a href="/hotels/details/{{$user->id}}"
-                                                class="btn btn-success mx-2">details</a>
-                                            <form action="{{ route('users.validate', $user) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('PATCH')
-                                                    @if($user->is_active)
+                            @foreach ($users ?? [] as $user)
+                                @if ($user->role->name == 'gerant')
+                                    <tr>
+                                        <td>{{ $user->firstname }}</td>
+                                        <td>{{ $user->lastname }}</td>
+                                        <td>{{ $user->email }}<div class="bi-star-fill"></div>
+                                        </td>
+                                        <td>{{ $user->role->name }}</td>
+                                        <td>
+                                            <div class="d-flex ">
+
+                                                <a href="/hotels/details/{{ $user->id }}"
+                                                    class="btn btn-success mx-2">details</a>
+                                                <form action="{{ route('users.validate', $user) }}" method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    @if ($user->is_active)
                                                         <button type="submit" class="btn btn-success mx-2">
                                                             Validé
                                                         </button>
@@ -84,24 +86,94 @@
                                                         <button type="submit" class="btn btn-secondary mx-2">
                                                             non valider
                                                         </button>
-                                                     @endif
-                                            </form>
-                                           
+                                                    @endif
+                                                </form>
 
-                                            <form action="" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger mx-2" type="submit">Delete</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
+
+                                                <form action="" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger mx-2" type="submit">Delete</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
 
                         </tbody>
                     </table>
                 </div>
             </div>
+
+
+            {{-- Users --}}
+
+
+             <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Clients
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>FirstName</th>
+                                <th>LastName</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($users ?? [] as $user)
+                                @if ($user->role->name == 'client')
+                                    <tr>
+                                        <td>{{ $user->firstname }}</td>
+                                        <td>{{ $user->lastname }}</td>
+                                        <td>{{ $user->email }}<div class="bi-star-fill"></div>
+                                        </td>
+                                        <td>{{ $user->role->name }}</td>
+                                        <td>
+                                            <div class="d-flex ">
+
+                                                <a href="/hotels/details/{{ $user->id }}"
+                                                    class="btn btn-success mx-2">details</a>
+                                                <form action="{{ route('users.validate', $user) }}" method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    @if ($user->is_active)
+                                                        <button type="submit" class="btn btn-success mx-2">
+                                                            Banne
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-secondary mx-2">
+                                                            Remove Banne
+                                                        </button>
+                                                    @endif
+                                                </form>
+
+
+                                                <form action="" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger mx-2" type="submit">Delete</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+           
         </div>
     </main>
 </x-admin>
