@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Chambre extends Model
 {
@@ -12,7 +13,15 @@ class Chambre extends Model
         return $this->belongsToMany(Tag::class,'chambre_tag');
     }
 
-    public function proprties(){
-        return $this->belongsToMany(Proprtie::class, 'chambre_proprite');
+    public function properties(){
+        return $this->belongsToMany(Property::class, 'chambre_property');
+    }
+
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
+    }
+
+    public function categorie(){
+        return $this->belongsTo(Hotel::class);
     }
 }
