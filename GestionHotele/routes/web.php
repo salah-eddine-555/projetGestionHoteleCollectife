@@ -3,10 +3,10 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\SessionsController;
+use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MiscsController;
-use App\Http\Controllers\ChambreController;
 use App\Http\Controllers\ReservationController;
 
 use App\Http\Controllers\PropertyController;
@@ -90,3 +90,6 @@ Route::post('reservation/filter', [ReservationController::class, 'filter'])->nam
 
 
 
+Route::resource('chambres',ChambreController::class);
+Route::patch('/users/{user}/validate',[SessionsController::class,'validate'])
+->name('users.validate');
