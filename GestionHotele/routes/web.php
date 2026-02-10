@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\SessionsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MiscsController;
+use App\Http\Controllers\ChambreController;
+use App\Http\Controllers\ReservationController;
+
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +83,10 @@ Route::get('manager.wait', function () {
 Route::get('client.banne', function () {
     return view('client/banne');
 });
+Route::get('chambres/index', [ChambreController::class, 'index']);
+
+//test pour le reservation 
+Route::post('reservation/filter', [ReservationController::class, 'filter'])->name('reservation.filter');
 
 
 

@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chambre;
 use Illuminate\Http\Request;
 
-class ChambreController extends Controller
+class ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $chambres = Chambre::with('tags','properties')->get();
-        // return view('chambres.index',compact('chambres'));
-        return view('chambres.test',compact('chambres'));
+        $reservation = Reservation::all();
+        return view("reseervation.index", compact("reservation")); 
     }
+
+    public function filter(){
+        dd('hello filter');
+        $chambreLibre = DB::tables('chambres')
+            ->join('reservations', 'chambers.id', '=', 'reservations.chamber_id')->get();
+        dd($chambreLibre);
+        $listCount = DB::tables("reservations")->count()->groupByRow('chambre_id')->get();
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,10 +43,9 @@ class ChambreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Chambre $chambre)
+    public function show(string $id)
     {
-        $chambre = Chambre::with('tags','proprties');
-        return view('chambre.index',compact('chambres'));
+        //
     }
 
     /**
