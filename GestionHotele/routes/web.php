@@ -82,3 +82,7 @@ Route::post('reservation/filter', [ReservationController::class, 'filter'])->nam
 
 
 
+//routage de payment 
+Route::post('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::get('/success', [StripeController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [StripeController::class, 'cancel'])->name('checkout.cancel');

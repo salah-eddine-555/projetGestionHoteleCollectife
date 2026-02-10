@@ -16,5 +16,11 @@
         <input type="date" name="date_fin" placeholder="date debut">
         <button type="submit">rechcher</button>
     </form>
+
+    <h2>payment</h2>
+    <form action="{{ route('checkout')}}" method="POST">
+        <button type="submit">payer</button>
+
+    </form>
 </body>
 </html>
