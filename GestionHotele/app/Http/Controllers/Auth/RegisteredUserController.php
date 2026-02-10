@@ -34,13 +34,13 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'min:8'],
             'roles' => ['required']
         ]);
-        // dd($request);
         $user = User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => (int)$request->roles
+            'role_id' => (int)$request->roles,
+            'is_active' => 0
         ]);
         // dd($user);
         Auth::login($user);
