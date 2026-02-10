@@ -37,7 +37,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div >{{ $chambre->categorie->name }}</div>
+                                        <div >{{ $chambre->category->name }}</div>
                                     </div>
 
                                 </div>

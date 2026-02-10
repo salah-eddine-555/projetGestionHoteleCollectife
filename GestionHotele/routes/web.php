@@ -83,7 +83,7 @@ Route::get('manager.wait', function () {
 Route::get('client.banne', function () {
     return view('client/banne');
 });
-Route::get('chambres/index', [ChambreController::class, 'index']);
+Route::get('/chambres', [ChambreController::class, 'index']);
 
 //test pour le reservation 
 Route::post('reservation/filter', [ReservationController::class, 'filter'])->name('reservation.filter');

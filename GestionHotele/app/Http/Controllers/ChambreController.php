@@ -24,7 +24,7 @@ class ChambreController extends Controller
         $chambres = $query->get();
         $allTags = Tag::all();
         $allProperties = Property::all();
-        return view('client.home', compact('chambres', 'allTags','allProperties'));
+        return view('client.chambres', compact('chambres', 'allTags','allProperties'));
     }
 
     /**
