@@ -22,6 +22,6 @@ class Chambre extends Model
     }
 
     public function category(){
-        return $this->belongsTo(Categorie::class, 'chambre.categorie_id');
+        return $this->belongsTo(Categorie::class, 'categorie_id');
     }
 }

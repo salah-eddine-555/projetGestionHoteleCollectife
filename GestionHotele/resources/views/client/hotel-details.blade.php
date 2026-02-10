@@ -37,15 +37,14 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Chambre name-->
-
-                                    <h5 class="fw-bolder">{{ $chambre->quantity }}</h5>
+                                    <h5 class="fw-bolder">{{ $chambre->category->name }}</h5>
                                     <!-- Chambre price-->
                                     ${{ $chambre->price_per_night }}
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="">View
                                         details</a></div>
                             </div>
                         </div>
