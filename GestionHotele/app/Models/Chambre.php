@@ -21,7 +21,11 @@ class Chambre extends Model
         return $this->belongsToMany(Property::class, 'chambre_property');
     }
 
-    public function category(){
-        return $this->belongsTo(Categorie::class, 'chambre.categorie_id');
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
+    }
+
+    public function categorie(){
+        return $this->belongsTo(Hotel::class);
     }
 }
