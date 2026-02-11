@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Chambre;
 use App\Models\Property;
 use App\Models\Tag;
@@ -17,25 +18,10 @@ class ChambreController extends Controller
     {
         $query = Chambre::with('tags', 'properties');
 
+        $endDate = $request->get("startDate") ?? null;
+        $startDate = $request->get("startDate") ?? null;
 
-        if ($tagId = $request->get('tag')) {
-            $query->whereHas('tags', fn($q) => $q->where('tags.id', $tagId));
-        }
-        if ($propertyId = $request->get('property')) {
-            $query->whereHas('properties', fn($q) => $q->where('properties.id', $propertyId));
-        }
-
-        if (null !==$request->get('startDate')) {
-
-        }
-        if (null !==$request->get('endDate')) {
-            
-        }
-
-        $endDate = $request->get("startDate");
-        $startDate = $request->get("startDate");
-
-        $rooms = DB::table('chambres')
+        /*         $rooms = DB::table('chambres')
             ->whereNotIn(
                 'id',
                 DB::table('reservations')
@@ -50,15 +36,36 @@ class ChambreController extends Controller
                     ->where('end_date', '>', "$startDate")
                     ->count()
 
-            )->get();
+            );
+ */
+
+/*         $sql = "SELECT c.* FROM chambres c WHERE c.categorie_id = 1
+                AND c.id NOT IN 
+                (SELECT rs.chambre_id FROM reservations rs
+                WHERE rs.start_date < '2026-03-16' AND rs.end_date > '2026-02-05')
+                OR c.quantity > (SELECT COUNT(rs.chambre_id) FROM reservations rs
+                WHERE rs.start_date < '2026-03-16' AND rs.end_date > '2026-02-05' ) AND c.categorie_id = 1";
+ */
+        if ($tagId = $request->get('tag')) {
+            $query->whereHas('tags', fn($q) => $q->where('tags.id', $tagId));
+        }
+        if ($propertyId = $request->get('property')) {
+            $query->whereHas('properties', fn($q) => $q->where('properties.id', $propertyId));
+        }
+/*         if ($categoryId = $request->get("category")) {
+            $rooms->where('category', 'categorie_id', $categoryId);
+        }
+ */
 
 
 
 
-        $chambres = $rooms;
+
+        $chambres = $query->get();
         $allTags = Tag::all();
         $allProperties = Property::all();
-        return view('client.chambres', compact('chambres', 'allTags', 'allProperties'));
+        $allCategories = Categorie::all();
+        return view('client.chambres', compact('chambres', 'allTags', 'allProperties', 'allCategories'));
     }
 
     /**
