@@ -10,7 +10,7 @@
                                     <h3 class="text-center font-weight-light my-4">Create a hotel</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('hotels.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('chambres.store') }}" method="POST" enctype="multipart/form-data">
 
                                         @csrf
                                         <div class="row mb-3">

@@ -38,11 +38,10 @@
                                     <td>
                                         <div class="d-flex ">
 
-
-                                            <a href=""
+                                            <a href="{{ route('miscs.edit', "tag!$tag->id") }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('miscs.destroy', 'tag' ,$tag) }}" method="POST">
+                                            <form action="{{ route('miscs.destroy', "tag!$tag->id") }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
@@ -85,10 +84,10 @@
                                         <div class="d-flex ">
 
 
-                                            <a href=""
+                                            <a href="{{ route('miscs.edit', "property!$property->id") }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('miscs.destroy', $property) }}" method="POST">
+                                            <form action="{{ route('miscs.destroy', "property!$property->id") }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
@@ -131,10 +130,10 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href=""
+                                            <a href="{{ route('miscs.edit', "category!$category->id") }}"
                                                 class="btn btn-secondary mx-2">Edit</a>
 
-                                            <form action="{{ route('miscs.destroy', $category) }}" method="POST">
+                                            <form action="{{ route('miscs.destroy', "category!$category->id") }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>

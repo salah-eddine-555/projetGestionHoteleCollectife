@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Hotel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -25,7 +26,8 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'is_active'
     ];
 
     /**
@@ -52,15 +54,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function Role(): BelongsTo
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
     // //relation many to many avec hotel
 
-    // public function Hotel(): belgonsToMany { 
-    //     return $this->belongsToMany(Hotel::class);
-    // }
+    public function Hotel(): BelongsToMany { 
+        return $this->belongsToMany(Hotel::class);
+    }
 
 }

@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Property;
 use Illuminate\Http\Request;
 
-class PropertyController extends Controller
+class ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('properties.index', ['properties' => Property::all()]);
+        $reservation = Reservation::all();
+        return view("reseervation.index", compact("reservation")); 
     }
+
+    public function filter(){
+        dd('hello filter');
+        $chambreLibre = DB::tables('chambres')
+            ->join('reservations', 'chambers.id', '=', 'reservations.chamber_id')->get();
+        dd($chambreLibre);
+        $listCount = DB::tables("reservations")->count()->groupByRow('chambre_id')->get();
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,10 +35,9 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store($validated)
+    public function store(Request $request)
     {
-        Property::create($validated);
-        return redirect()->route('proprtie.index');
+        //
     }
 
     /**
@@ -51,19 +59,16 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($validated, Property $property)
+    public function update(Request $request, string $id)
     {
-
-        $property->update($validated);
-        return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $property)
+    public function destroy(string $id)
     {
-        $property->delete();
-        return redirect()->back();
+        //
     }
 }

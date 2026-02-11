@@ -7,7 +7,6 @@ use App\Models\Chambre;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\Property;
-use App\Models\Proprtie;
 use App\Models\Tag;
 use App\Models\User;
 
@@ -15,7 +14,7 @@ class SiteController extends Controller
 {
     public function ClientHomepage()
     {
-        $hotels = Hotel::where('is_active', true)->paginate(10);
+        $hotels = Hotel::where('is_active', true)->paginate(20);
         return view('client.home', compact('hotels'));
     }
 

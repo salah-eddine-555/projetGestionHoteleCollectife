@@ -43,8 +43,9 @@
                                     <td>
                                         <div class="d-flex ">
 
-                                            <a href="/hotels/details/{{$hotel}}"
-                                                class="btn btn-success mx-2">details</a>
+                                            <a href="/hotels/details/{{$hotel->id}}"
+                                                class="btn btn-success mx-2">details
+                                            </a>
                                             <form action="{{ route('hotels.validate', $hotel) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('PATCH')
@@ -60,9 +61,9 @@
                                             </form>
                                            
 
-                                            <form action="" method="POST">
+                                            <form action="{{ route('hotels.destroy', $hotel)}}" method="POST">
                                                 @csrf
-                                                @method('DELETE')
+                                            @method('DELETE')
                                                 <button class="btn btn-danger mx-2" type="submit">Delete</button>
                                             </form>
                                         </div>

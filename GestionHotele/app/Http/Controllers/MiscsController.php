@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Property;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -50,23 +52,72 @@ class MiscsController extends Controller
         return redirect('/admin/miscs');
     }
 
-    public function destroy(Request $request, $type, $obj)
+    public function edit($obj)
     {
-        
-        switch($type){
+
+        [$type, $id] = explode('!', $obj);
+        $misc = null;
+        switch ($type) {
             case 'tag':
-                $tag = new Tag();
-                $tag = Tag::find($obj);
-                $this->tag->destroy($data);
+                $misc = Tag::find($id);
                 break;
             case 'property':
-                $this->proprty->destroy($data);
+                $misc = Property::find($id);
                 break;
             case 'category':
-                $this->category->destroy($data);
+                $misc = Categorie::find($id);
                 break;
         }
-        $tag->delete();
+
+        return view('admin.edit-miscs', compact('misc', 'type'));
+    }
+
+
+    public function update(Request $request, $misc)
+    {
+        [$type, $id] = explode('!', $misc);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:50'
+        ]);
+        switch ($type) {
+            case 'tag':
+                $tag = Tag::find($id);
+                $this->tag->update($validated, $tag);
+                break;
+            case 'property':
+                $property = Property::find($id);
+                $this->proprty->update($validated, $property);
+                break;
+            case 'category':
+                $category = Categorie::find($id);
+                $this->category->update($validated, $category);
+                break;
+        }
+
+        return redirect('/admin/miscs');
+    }
+
+
+
+    public function destroy($misc)
+    {
+        [$type, $id] = explode('!', $misc);
+        switch ($type) {
+            case 'tag':
+                $tag = Tag::find($id);
+                $this->tag->destroy($tag);
+                break;
+            case 'property':
+                $property = Property::find($id);
+                $this->proprty->destroy($property);
+                break;
+            case 'category':
+                $category = Categorie::find($id);
+                $this->category->destroy($category);
+                break;
+        }
+
         return redirect()->back();
     }
 }

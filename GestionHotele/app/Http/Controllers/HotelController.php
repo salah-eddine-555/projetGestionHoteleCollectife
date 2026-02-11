@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chambre;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 
@@ -47,19 +48,23 @@ class HotelController extends Controller
             $path = $file->storeAS('images', $name, 'public');
             $validated['image'] = $path;
         }
-
-        Hotel::create($validated);
-        return redirect()->back();;
+        $user = auth()->user();
+    
+        $hotel = Hotel::create($validated);
+       
+        $hotel->gerant()->attach($user->id);
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
-    {
-        $hotel = Hotel::findOrFail($id);
-        return view('client.hotel-details', compact('hotel'));
-    }
+        public function show($id)
+        {
+            $chambres = Chambre::where('hotel_id',$id)->get();
+            $hotel = Hotel::findOrFail($id);
+            return view('client.hotel-details', compact('hotel', 'chambres'));
+        }
 
     /**
      * Show the form for editing the specified resource.

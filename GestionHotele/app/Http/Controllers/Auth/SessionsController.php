@@ -47,7 +47,12 @@ class SessionsController extends Controller
             $user = DB::table('users')->where('email', $validate['email'])->first();
             // dd($user);
             if ($user->role_id == 1) {
-                return redirect('/');
+                
+                if ($user->is_active == 1) {
+                    return redirect('/');
+                } else {
+                    return redirect('client.banne');
+                }
             } elseif ($user->role_id == 2) {
                 // dd($user->is_active ); 
                 if ($user->is_active == 1) {
@@ -76,17 +81,34 @@ class SessionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
         //
+        return view('client.edite-profile');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $email = $request->validate([
+            'hiddenemail' => ['email', 'required'],
+
+        ]);
+        $validate = $request->validate([
+            'email' => ['email', 'required'],
+            'firstname' => 'required',
+            'lastname' => 'required'
+        ]);
+        $find_user = Db::table('users')->where('email',$email['hiddenemail'])->first();
+        // dd($user->id);
+        $user = User::find($find_user->id);
+        // dd($user);
+        $user->update($validate);
+        return redirect('/');
+
+        // $user = User::find();
     }
 
     /**
