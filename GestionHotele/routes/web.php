@@ -8,8 +8,10 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\MiscsController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\StripeController;
 
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
@@ -44,6 +46,7 @@ Route::middleware('admin')->group(function() {
     Route::resource('tags', TagController::class);
     Route::resource('properties', PropertyController::class);
     Route::resource('hotels', HotelController::class);
+    Route::resource('role',RoleController::class);
 
 
 });
@@ -83,11 +86,18 @@ Route::get('manager.wait', function () {
 Route::get('client.banne', function () {
     return view('client/banne');
 });
+Route::get('chambres/test', [ChambreController::class, 'test']);
 Route::get('/chambres', [ChambreController::class, 'index']);
 
 //test pour le reservation 
 Route::post('reservation/filter', [ReservationController::class, 'filter'])->name('reservation.filter');
 
+
+
+//routage de payment 
+Route::post('/checkout/{chambre}', [StripeController::class, 'checkout'])->name('checkout');
+Route::get('/success', [StripeController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [StripeController::class, 'cancel'])->name('checkout.cancel');
 
 
 Route::resource('chambres',ChambreController::class);
