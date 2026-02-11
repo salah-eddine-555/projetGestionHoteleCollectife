@@ -1,4 +1,28 @@
-<x-manager>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method='GET' action='{{ route("chambres.index") }}'>
+        <select name='tag'>
+            <option value=''>Tous les tags</option>
+                @foreach ($allTags as $tag)
+            <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+                @endforeach
+            </select>
+            <select name='property'>
+            <option value=''>Toutes les propriétés</option>
+                @foreach ($allProperties as $prop)
+            <option value='{{ $prop->id }}'>{{ $prop->name }}</option>
+                @endforeach
+        </select>
+        <button type='submit'>Filtrer</button>
+    </form>
+
+    <x-manager>
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Chambres</h1>
@@ -20,7 +44,7 @@
                         <thead>
                             <tr>
                                 <th>Hotel name</th>
-                                <th>Chambre description</th>
+                                <th>Hotel address</th>
                                 <th>Capacite</th>
                                 <th>Categorie</th>
                                 <th>Options</th>
@@ -29,7 +53,7 @@
                         <tfoot>
                             <tr>
                                 <th>Hotel name</th>
-                                <th>Chambre description</th>
+                                <th>Hotel address</th>
                                 <th>Capacite</th>
                                 <th>Categorie</th>
                                 <th>Options</th>
@@ -39,11 +63,11 @@
 
                             @foreach ($chambres ?? [] as $chambre)
                                 <tr>
-                                    <td>{{ $chambre->hotel->name }}</td>
-                                    <td>{{ $chambre->description }}</td>
+                                    <td>{{ $chambre->name }}</td>
+                                    <td>{{ $chambre->address }}</td>
                                     <td>{{ $chambre->capacite }}<div class="bi-star-fill"></div>
                                     </td>
-                                    <td>{{ $chambre->categorie->name }}</td>
+                                    <td>{{ $chambre->categorie }}</td>
                                     <td>
                                         <div class="d-flex ">
 
@@ -71,3 +95,6 @@
     </main>
 
 </x-manager>
+
+</body>
+</html>

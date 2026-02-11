@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Chambre;
 use App\Models\Property;
 use App\Models\Tag;
@@ -21,10 +22,10 @@ class ChambreController extends Controller
         if ($propertyId = $request->get('property')) {
             $query->whereHas('properties', fn($q) => $q->where('properties.id',$propertyId));
         }
-        $chambres = $query->get();
+        $chambres = $query->paginate(10)->withQueryString();
         $allTags = Tag::all();
         $allProperties = Property::all();
-        return view('client.home', compact('chambres', 'allTags','allProperties'));
+        return view('client.chambres', compact('chambres', 'allTags','allProperties'));
     }
 
     /**
@@ -47,6 +48,14 @@ class ChambreController extends Controller
         'capacity' => 'required|integer|min:1',
         'description' => 'nullable|string',
         ]);
+
+        if ($request->Hasfile('image')) {
+            $file = $request->file('image');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAS('images', $name, 'public');
+            $validated['image'] = $path;
+        }
+
         $chambre = Chambre::create($validated);
         $chambre->tags()->sync($request->get('tags', []));
         $chambre->properties()->sync($request->get('properties', []));
@@ -69,7 +78,8 @@ class ChambreController extends Controller
      */
     public function edit(Chambre $chambre)
     {
-        return view('client.chambres.edit',compact('chambre'));
+        $categories = Categorie::all();
+        return view('manager.chambres.edit',compact('chambre','categories'));
     }
 
     /**
@@ -78,14 +88,24 @@ class ChambreController extends Controller
     public function update(Request $request, Chambre $chambre)
     {
         $validated = $request->validate([
-        'hotel_id' => 'required|integer',
-        'number' => 'required|string',
+        'quantity' => 'required|integer',
         'price_per_night' => 'required|numeric|min:0',
         'capacite' => 'required|integer|min:1',
+        'categorie' => 'required',  
         'description' => 'nullable|string',
+        'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
         ]);
+
+        // dd($validated);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAS('images', $name, 'public');
+            $validated['image'] = $path;
+        }
         $chambre->update($validated);
-        return redirect()->route('chambres.index')->with('success', 'Post updated successfully.');
+        return redirect('manager/dashboard')->with('success', 'chambre updated successfully.');
     }
 
     /**

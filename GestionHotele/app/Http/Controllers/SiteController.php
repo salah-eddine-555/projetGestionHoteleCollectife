@@ -38,7 +38,7 @@ class SiteController extends Controller
 
     public function MangerChambres()
     {
-        $chambres = Hotel::all();
+        $chambres = Chambre::all();
         return view('manager.chambres', compact('chambres'));
     }
 
