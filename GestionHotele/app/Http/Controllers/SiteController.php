@@ -9,6 +9,7 @@ use App\Models\Hotel;
 use App\Models\Property;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class SiteController extends Controller
 {
@@ -19,24 +20,30 @@ class SiteController extends Controller
     }
 
     public function MangerDashboard()
-    {   
-        $user = auth()->user();
+    {
+        Gate::authorize('manager-dashboard');
 
-        $hotels = Hotel::whereHas('gerant', function($query) use($user) {
+        $user = Auth()->user();
+
+        $hotels = Hotel::whereHas('gerant', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })->get();
-        
+
         return view('manager.dashboard', compact('hotels'));
     }
 
     public function MangerHotles()
     {
+        Gate::authorize('manager-dashboard');
+
         $hotels = Hotel::all();
         return view('manager.hotels', compact('hotels'));
     }
 
     public function MangerChambres()
     {
+        Gate::authorize('manager-dashboard');
+
         $chambres = Hotel::all();
         return view('manager.chambres', compact('chambres'));
     }
@@ -50,31 +57,39 @@ class SiteController extends Controller
 
     public function AdminDashboard()
     {
+        Gate::can('admin-dashboard');
+
         $users = User::all();
         return view('admin.dashboard', compact('users'));
     }
 
     public function AdminHotels()
     {
+        Gate::authorize('admin-dashboard');
+
         $hotels = Hotel::all();
         return view('admin.hotels', compact('hotels'));
     }
 
     public function AdminChambres()
     {
+        Gate::authorize('admin-dashboard');
+
         $chambres = Chambre::all();
         return view('admin.chambres', compact('chambres'));
     }
 
     public function AdminMiscs()
     {
+        Gate::authorize('admin-dashboard');
+
         $tags = Tag::all();
         $properties = Property::all();
         $categories = Categorie::all();
         return view('admin.miscs', compact('tags', 'properties', 'categories'));
     }
 
-    
+
 
     public function show()
     {
