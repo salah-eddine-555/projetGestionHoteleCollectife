@@ -4,8 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
+use App\Models\Hotel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -18,9 +22,12 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
+        'role_id',
+        'is_active'
     ];
 
     /**
@@ -33,6 +40,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $table = 'users';
     /**
      * Get the attributes that should be cast.
      *
@@ -45,4 +53,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    // //relation many to many avec hotel
+
+    public function Hotel(): BelongsToMany { 
+        return $this->belongsToMany(Hotel::class);
+    }
+
 }
