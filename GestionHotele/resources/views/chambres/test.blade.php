@@ -19,6 +19,7 @@
 
     <h2>payment</h2>
     <form action="{{ route('checkout')}}" method="POST">
+        @csrf
         <button type="submit">payer</button>
 
     </form>

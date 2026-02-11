@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Stripe;
 use Illuminate\Http\Request;
 use App\Models\Chambre;
+
 
 
 class StripeController extends Controller
@@ -12,11 +13,12 @@ class StripeController extends Controller
 
     public function checkout(){
 
-        \Stripe\Stripe::setApiKey(env('STRIPE_KEY'));
+       
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $chambre = Chambre::all();
         
-        $session =  \Stripe\checkout\Session::create([
+        $session =  \Stripe\Checkout\Session::create([
             'line_items'=> [[
                 'price_data' => [
                     'currency'=> 'mad',
@@ -32,12 +34,12 @@ class StripeController extends Controller
             'cancel_url' => route('checkout.cancel'),
         ]);
 
-        return redirect($session->url());
+        return redirect($session->url);
     }
 
     public function success(){
 
-        return views('payment.checkout-success');
+        return view('payment.checkoutSuccess');
     }
 
     public function cancel(){

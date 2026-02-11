@@ -12,6 +12,11 @@ class ChambreController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function test(){
+
+        return view("chambres.test");
+    }
     public function index(Request $request)
     {
         $query = Chambre::with('tags', 'properties');

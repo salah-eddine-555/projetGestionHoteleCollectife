@@ -19,6 +19,7 @@ class Hotel extends Model
             $query->where('name', 'gerant');
         });
     }
+    
 
 
 }
