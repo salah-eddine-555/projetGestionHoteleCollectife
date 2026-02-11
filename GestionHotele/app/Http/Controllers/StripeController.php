@@ -11,21 +11,22 @@ class StripeController extends Controller
 {
     
 
-    public function checkout(){
+    public function checkout(Chambre $chambre){
 
-       
+    //   dd($chambre->hotel->name);
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        $chambre = Chambre::all();
         
-        $session =  \Stripe\Checkout\Session::create([
+        
+        $session = \Stripe\Checkout\Session::create([
             'line_items'=> [[
                 'price_data' => [
                     'currency'=> 'mad',
                     'product_data' => [
-                        'name'=> 'chambre1'
+                        'name'=> $chambre->hotel->name,
+                        'description' => $chambre->category->name,
                     ],
-                    'unit_amount'=> 100 * 100,
+                    'unit_amount'=> $chambre->price_per_night * 100, 
                 ],
                 'quantity' => 1,
             ]],
@@ -33,7 +34,7 @@ class StripeController extends Controller
             'success_url'=> route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
         ]);
-
+       
         return redirect($session->url);
     }
 

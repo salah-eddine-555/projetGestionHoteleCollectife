@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->foreignId('chambre_id')->constrained();
-        });
+        // Schema::table('reservations', function (Blueprint $table) {
+        //     $table->foreignId('chambre_id')->constrained();
+        // });
     }
 
     /**
