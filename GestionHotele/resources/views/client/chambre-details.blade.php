@@ -41,6 +41,7 @@
                             <button class="btn btn-primary">Reserve</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>

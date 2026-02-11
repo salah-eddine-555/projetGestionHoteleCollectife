@@ -26,12 +26,14 @@ class ChambreController extends Controller
         }
 
         if (null !==$request->get('startDate')) {
+
         }
         if (null !==$request->get('endDate')) {
             
         }
-$endDate = $request->get("startDate");
-            $startDate = $request->get("startDate");
+
+        $endDate = $request->get("startDate");
+        $startDate = $request->get("startDate");
 
         $rooms = DB::table('chambres')
             ->whereNotIn(
@@ -47,14 +49,13 @@ $endDate = $request->get("startDate");
                     ->where('start_date', '<', "$endDate")
                     ->where('end_date', '>', "$startDate")
                     ->count()
-            );
+
+            )->get();
 
 
 
 
-
-
-        $chambres = $query->paginate(20);
+        $chambres = $rooms;
         $allTags = Tag::all();
         $allProperties = Property::all();
         return view('client.chambres', compact('chambres', 'allTags', 'allProperties'));
