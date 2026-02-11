@@ -23,7 +23,8 @@ use App\Http\Middleware\GerantMiddleware;
 
 
 Route::middleware('admin')->group(function() {
-    Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard']);
+    Route::get('/admin/dashboard', [SiteController::class, 'AdminDashboard'])
+        ->middleware('can:admin-dashboard');
     Route::get('/admin/hotels', [SiteController::class, 'AdminHotels']);
     Route::get('/admin/miscs', [SiteController::class, 'AdminMiscs']);
     Route::get("/admin/create-miscs", [MiscsController::class, 'create']);
