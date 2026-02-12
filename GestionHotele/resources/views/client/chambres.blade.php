@@ -52,6 +52,14 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class = "col-md-6">
+                        <select class="form-control " name='category'>
+                            <option value=''>Toutes les categories</option>
+                            @foreach ($allCategories as $category)
+                                <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
@@ -98,11 +106,12 @@
                     </div>
                 @endforeach
  --}}
-                @for ($i = 0 ; $i < sizeof($chambres); $i++)
+                @for ($i = 0; $i < sizeof($chambres); $i++)
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Hotel image-->
-                            <img class="card-img-top" src="{{ asset('storage/' . ($chambres[$i]->image ?? 'default.jpg')) }}"
+                            <img class="card-img-top"
+                                src="{{ asset('storage/' . ($chambres[$i]->image ?? 'default.jpg')) }}"
                                 alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
@@ -123,7 +132,7 @@
                             <!-- Hotel actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                        href="{{ route('chambres.show',$chambres[$i]->id ) }}">View
+                                        href="{{ route('chambres.show', $chambres[$i]->id) }}">View
                                         details</a></div>
                             </div>
                         </div>
