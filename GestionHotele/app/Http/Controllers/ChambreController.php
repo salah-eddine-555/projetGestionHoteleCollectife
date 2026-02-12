@@ -57,6 +57,7 @@ class ChambreController extends Controller
         if ($propertyId = $request->get('property')) {
             $query->whereHas('properties', fn($q) => $q->where('properties.id', $propertyId));
         }
+        
 /*         if ($categoryId = $request->get("category")) {
             $rooms->where('category', 'categorie_id', $categoryId);
         }
@@ -66,7 +67,7 @@ class ChambreController extends Controller
 
 
 
-        $chambres = $query->get();
+        $chambres = $query->paginate(10)->withQueryString();
         $allTags = Tag::all();
         $allProperties = Property::all();
         $allCategories = Categorie::all();
