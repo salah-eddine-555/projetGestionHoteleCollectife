@@ -57,7 +57,7 @@ class SiteController extends Controller
 
     public function AdminDashboard()
     {
-        Gate::can('admin-dashboard');
+        Gate::authorize('admin-dashboard');
 
         $users = User::all();
         return view('admin.dashboard', compact('users'));

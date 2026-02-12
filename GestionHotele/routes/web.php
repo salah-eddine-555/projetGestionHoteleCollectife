@@ -54,7 +54,7 @@ Route::middleware('admin')->group(function() {
 
 Route::middleware('gerant')->group(function() {
 
-    Route::get('/manager/dashboard', [SiteController::class, 'MangerDashboard']);
+    Route::get('/manager/dashboard', [SiteController::class, 'MangerDashboard'])->name("manager.dashboard");
     Route::resource('hotels', HotelController::class);
     Route::get('/manager/hotels', [SiteController::class, 'MangerHotles']);
     Route::get('/manager/chambres', [SiteController::class, 'MangerChambres']);
@@ -97,8 +97,8 @@ Route::post('reservation/filter', [ReservationController::class, 'filter'])->nam
 
 //routage de payment 
 Route::post('/checkout/{chambre}', [StripeController::class, 'checkout'])->name('checkout');
-Route::get('/success', [StripeController::class, 'success'])->name('checkout.success');
-Route::get('/cancel', [StripeController::class, 'cancel'])->name('checkout.cancel');
+Route::get('/checkout/success', [StripeController::class, 'success'])->name('checkout.success');
+Route::get('checkout/cancel', [StripeController::class, 'cancel'])->name('checkout.cancel');
 
 
 Route::resource('chambres',ChambreController::class);
