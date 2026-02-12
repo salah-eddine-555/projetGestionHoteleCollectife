@@ -55,7 +55,7 @@ class HotelController extends Controller
         $hotel = Hotel::create($validated);
 
         $hotel->gerant()->attach($user->id);
-        return redirect()->back();
+        return redirect()->route('manager.dashboard');
     }
 
     /**
@@ -92,16 +92,8 @@ class HotelController extends Controller
             'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
-
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $name = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAS('images', $name, 'public');
-            $validated['image'] = $path;
-        }
-
-        $hotel->update($validated);
-        return redirect()->back();
+            $hotel->update($validated);
+            return redirect()->route('manager.dashboard');
     }
 
     /**
@@ -112,7 +104,7 @@ class HotelController extends Controller
         Gate::authorize('delete');
 
         $hotel->delete();
-        return redirect()->back();
+        return redirect()->route('manager.dashboard');
     }
 
     public function validateHotel(Hotel $hotel)
