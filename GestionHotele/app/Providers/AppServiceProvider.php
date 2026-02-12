@@ -33,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
                 ? Response::allow()
                 : Response::denyAsNotFound();
         });
+
     }
 }
