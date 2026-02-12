@@ -7,7 +7,7 @@
                         <div class="col-lg-7">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Create a hotel</h3>
+                                    <h3 class="text-center font-weight-light my-4">Create a chambre</h3>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('chambres.store') }}" method="POST" enctype="multipart/form-data">
@@ -16,24 +16,43 @@
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" name="name" id="hotel-name"
-                                                        type="text" placeholder="Enter the hotel name" />
-                                                    <label for="name">Name</label>
+                                                    <input class="form-control" name="hotel_id" id="hotel_id"
+                                                        type="number" placeholder="Enter the hotel id" />
+                                                    <label for="hotel_id">Hotel</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating">
                                                     <input class="form-control" name="rating" id="rating"
                                                         type="number" placeholder="Enter the hotel's star rating"
-                                                        max="5" min="0" />
-                                                    <label for="rating">Rating</label>
+                                                         />
+                                                    <label for="rating">Quantity</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input class="form-control" name="price_per_night" id="price_per_night"
+                                                        type="number" placeholder="Enter the chambre price per night"
+                                                         />
+                                                    <label for="price_per_night">prix per night</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" name="address" id="address" type="text"
-                                                placeholder="Enter the hotel's address" />
-                                            <label for="address">Address</label>
+                                            <label for="categorie">Choose a catagorie:</label>
+                                            <select id="categorie" name="categorie">
+                                                @foreach($categories as $categorie)
+                                                <option value="{{ $categorie->name }}">{{ $categorie->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            @foreach($categories as $categorie)
+                                            <label>
+                                                <input type="checkbox" name="categorie" value="{{ $categorie->name }}">
+                                                {{ $categorie->name }}
+                                            </label>
+                                            @endforeach
                                         </div>
                                         <div class="form-floating mb-3">
                                             <textarea class="form-control" name="description" id="description" maxlength="255"></textarea>

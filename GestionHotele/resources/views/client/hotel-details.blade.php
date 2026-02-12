@@ -37,7 +37,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Chambre name-->
-                                    <h5 class="fw-bolder">{{ $chambre->category->name }}</h5>
+                                    <h5 class="fw-bolder">{{ $chambre->categorie->name }}</h5>
                                     <!-- Chambre price-->
                                     ${{ $chambre->price_per_night }}
                                 </div>

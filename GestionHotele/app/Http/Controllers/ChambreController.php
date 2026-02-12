@@ -57,6 +57,7 @@ class ChambreController extends Controller
         if ($propertyId = $request->get('property')) {
             $query->whereHas('properties', fn($q) => $q->where('properties.id', $propertyId));
         }
+        
 /*         if ($categoryId = $request->get("category")) {
             $rooms->where('category', 'categorie_id', $categoryId);
         }
@@ -66,7 +67,7 @@ class ChambreController extends Controller
 
 
 
-        $chambres = $query->get();
+        $chambres = $query->paginate(10)->withQueryString();
         $allTags = Tag::all();
         $allProperties = Property::all();
         $allCategories = Categorie::all();
@@ -78,7 +79,8 @@ class ChambreController extends Controller
      */
     public function create()
     {
-        return view('manager.chambres.create');
+        $categories = Categorie::all();
+        return view('manager.chambres.create', compact('categories'));
     }
 
     /**
@@ -91,7 +93,9 @@ class ChambreController extends Controller
             'number' => 'required|string',
             'price_per_night' => 'required|numeric|min:0',
             'capacity' => 'required|integer|min:1',
+            'categorie' => 'required',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if ($request->Hasfile('image')) {
@@ -100,7 +104,6 @@ class ChambreController extends Controller
             $path = $file->storeAS('images', $name, 'public');
             $validated['image'] = $path;
         }
-
         $chambre = Chambre::create($validated);
         $chambre->tags()->sync($request->get('tags', []));
         $chambre->properties()->sync($request->get('properties', []));
