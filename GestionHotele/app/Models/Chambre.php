@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Chambre extends Model
 {
-    protected $fillable = ['capacite', 'image', 'description', 'quantity', 'price_per_night'];
+    protected $fillable = ['capacite', 'image', 'description', 'quantity', 'price_per_night','categorie_id'];
 
     use HasFactory;
 
@@ -31,4 +31,10 @@ class Chambre extends Model
     public function categorie(){
         return $this->belongsTo(Categorie::class);
     }
+
+    public function chambres()
+    {
+        return $this->belongsToMany(Chambre::class);
+    }
+
 }
