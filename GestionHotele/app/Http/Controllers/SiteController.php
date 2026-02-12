@@ -22,7 +22,7 @@ class SiteController extends Controller
     {   
         $user = auth()->user();
 
-        $hotels = Hotel::whereHas('gerant', function($query) use($user) {
+        $hotels = Hotel::whereHas('gerant', function($query) use ($user) {
             $query->where('user_id', $user->id);
         })->get();
         

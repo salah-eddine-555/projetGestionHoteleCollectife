@@ -29,7 +29,11 @@
                         <i class="fas fa-table me-1"></i>
                         Hotels
                     </div>
+                    
                     <div class="card-body">
+                        <div>
+                                <a href="{{ route('hotels.create') }}" class="btn btn-primary mx-2 my-2">Create a hotel</a>
+                        </div>
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>

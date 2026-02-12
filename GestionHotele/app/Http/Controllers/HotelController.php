@@ -53,7 +53,7 @@ class HotelController extends Controller
         $hotel = Hotel::create($validated);
        
         $hotel->gerant()->attach($user->id);
-        return redirect()->back();
+        return redirect()->route('manager.dashboard');
     }
 
     /**
@@ -97,7 +97,7 @@ class HotelController extends Controller
             }
 
             $hotel->update($validated);
-            return redirect()->back();
+            return redirect()->route('manager.dashboard');
         }
 
     /**
@@ -106,7 +106,7 @@ class HotelController extends Controller
     public function destroy(Hotel $hotel)
     {   
         $hotel->delete();
-        return redirect()->back();
+        return redirect()->route('manager.dashboard');
     }
 
     public function validateHotel(Hotel $hotel){

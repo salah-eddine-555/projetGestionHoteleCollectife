@@ -39,7 +39,7 @@ class StripeController extends Controller
     }
 
     public function success(){
-
+        echo ('success');
         return view('payment.checkoutSuccess');
     }
 
