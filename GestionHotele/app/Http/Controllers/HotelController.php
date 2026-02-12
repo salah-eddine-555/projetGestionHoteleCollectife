@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chambre;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use Illuminate\Support\Facades\Gate;
 
 class HotelController extends Controller
 {
@@ -24,6 +25,7 @@ class HotelController extends Controller
 
     public function create()
     {
+        Gate::authorize('create');
         return view('manager.create-hotel');
     }
 
@@ -32,7 +34,7 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
@@ -41,7 +43,7 @@ class HotelController extends Controller
             'image' => 'nullable|image|mimes:jpeg,jpg,png'
         ]);
 
-        
+
         if ($request->Hasfile('image')) {
             $file = $request->file('image');
             $name = time() . '_' . $file->getClientOriginalName();
@@ -49,9 +51,9 @@ class HotelController extends Controller
             $validated['image'] = $path;
         }
         $user = auth()->user();
-    
+
         $hotel = Hotel::create($validated);
-       
+
         $hotel->gerant()->attach($user->id);
         return redirect()->back();
     }
@@ -59,69 +61,73 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      */
-        public function show($id)
-        {
-            $chambres = Chambre::where('hotel_id',$id)->get();
-            $hotel = Hotel::findOrFail($id);
-            return view('client.hotel-details', compact('hotel', 'chambres'));
-        }
+    public function show($id)
+    {
+        $chambres = Chambre::where('hotel_id', $id)->get();
+        $hotel = Hotel::findOrFail($id);
+        return view('client.hotel-details', compact('hotel', 'chambres'));
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Hotel $hotel)
     {
+        Gate::authorize('update');
+
         return view('manager.edit-hotel', compact('hotel'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-        public function update(Request $request, Hotel $hotel)
-        {
-            
-            $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'address' => 'required|string|max:255',
-                'rating' => 'required|integer',
-                'description' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
-            ]);
+    public function update(Request $request, Hotel $hotel)
+    {
 
-            
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $name = time() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAS('images', $name, 'public');
-                $validated['image'] = $path;
-            }
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'rating' => 'required|integer',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048'
+        ]);
 
-            $hotel->update($validated);
-            return redirect()->back();
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAS('images', $name, 'public');
+            $validated['image'] = $path;
         }
+
+        $hotel->update($validated);
+        return redirect()->back();
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Hotel $hotel)
-    {   
+    {
+        Gate::authorize('delete');
+
         $hotel->delete();
         return redirect()->back();
     }
 
-    public function validateHotel(Hotel $hotel){
+    public function validateHotel(Hotel $hotel)
+    {
 
-      
-        if($hotel->is_active == false){
-             $hotel->update([
-            "is_active" => true,
-            ]);
-        }else {
+
+        if ($hotel->is_active == false) {
             $hotel->update([
-            "is_active" => false,
+                "is_active" => true,
+            ]);
+        } else {
+            $hotel->update([
+                "is_active" => false,
             ]);
         }
         return redirect()->back();
-       
     }
 }

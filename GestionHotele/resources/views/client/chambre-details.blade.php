@@ -37,9 +37,15 @@
                             <input name="startDate" class="form-control dateInputEnd" id="startDate" type="date"/>
                             <label for="startDate">Start Date</label>
                         </div>
+
+                        
                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                             <button class="btn btn-primary">Reserve</button>
                         </div>
+                    </form>
+                     <form class="mt-5" action="{{ route('checkout', $chambre)}}" method="POST">
+                        @csrf
+                        <button class="btn btn-success" type="submit">payer</button>
                     </form>
                     
                 </div>

@@ -107,10 +107,11 @@
             </div>
 
 
+
             {{-- Users --}}
 
 
-             <div class="card mb-4">
+            <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Clients
@@ -155,8 +156,6 @@
                                                         </button>
                                                     @endif
                                                 </form>
-
-
                                                 <form action="" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -173,7 +172,14 @@
                 </div>
             </div>
 
-           
+
+
+
+
         </div>
     </main>
+
+
+
+
 </x-admin>
